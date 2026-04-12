@@ -1,0 +1,241 @@
+/* Importação da Fonte (Inter ou Poppins) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+    --primary-color: #3498db; /* Azul */
+    --secondary-color: #95a5a6; /* Cinza Suave */
+    --bg-color: #ecf0f1; /* Branco/Cinza Claro */
+    --text-color: #2c3e50; /* Cinza Escuro */
+    --os-color: #e74c3c; /* Vermelho SO */
+    --free-color: #2ecc71; /* Verde Livre */
+    --process-color-1: #3498db; /* Azul Processo 1 */
+    --process-color-2: #9b59b6; /* Roxo Processo 2 */
+    --process-color-3: #f1c40f; /* Amarelo Processo 3 */
+    --border-radius: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: var(--secondary-color);
+    margin-top: 5px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Estilo para todas as caixas (cards) */
+.card {
+    background-color: white;
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 10px;
+}
+
+/* Painel de Controle e Formulários */
+.control-panel select,
+input[type="number"],
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    margin-right: 10px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.control-panel select:focus,
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.action-button {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.action-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.action-button.secondary {
+    background-color: var(--secondary-color);
+    margin-left: 10px;
+}
+
+.action-button.secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* Status da Memória */
+.memory-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.memory-info div {
+    padding: 5px 0;
+    font-weight: 600;
+}
+
+/* Barra de Uso da Memória (Gráfico) */
+.memory-bar-container {
+    height: 40px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.memory-bar {
+    display: flex;
+    height: 100%;
+    transition: width 0.5s;
+}
+
+.segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: width 0.5s, background-color 0.5s;
+    text-align: center;
+}
+
+.os-segment {
+    background-color: var(--os-color); /* Vermelho */
+}
+
+.free-segment {
+    background-color: var(--free-color); /* Verde */
+}
+
+.process-segment {
+    background-color: var(--process-color-1); /* Azul */
+    border-left: 1px solid white;
+}
+
+/* Área de Visualização (Blocos) */
+.visualization-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid var(--secondary-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    min-height: 150px;
+    margin-top: 20px;
+}
+
+.memory-block {
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 600;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+/* Tabela de Processos */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+#process-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+#process-table th, #process-table td {
+    padding: 10px 15px;
+    border: 1px solid var(--bg-color);
+}
+
+#process-table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+#process-table tr:nth-child(even) {
+    background-color: #f7f9fb;
+}
+
+/* Exemplo de Cálculo */
+.explanation-area pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color);
+    overflow-x: auto;
+    font-size: 0.9em;
+    border-radius: var(--border-radius);
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 10px;
+    color: var(--secondary-color);
+    font-size: 0.9em;
+}

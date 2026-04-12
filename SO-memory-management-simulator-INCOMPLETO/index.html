@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Gerenciamento de Memória - SO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>🧠 Gerenciamento de Memória em Sistemas Operacionais</h1>
+        <p class="subtitle">Simulador Interativo e Didático para Estudantes</p>
+    </header>
+
+    <main class="container">
+        <section class="card control-panel">
+            <h2>⚙️ Seleção de Técnica</h2>
+            <select id="tecnica-selector" onchange="selecionarTecnica()">
+                <option value="">-- Escolha uma Técnica de Gerenciamento --</option>
+                <optgroup label="Alocação de Memória">
+                    <option value="particionada-estatica">Particionada Estática</option>
+                    <option value="particionada-dinamica">Particionada Dinâmica</option>
+                    <option value="particionada-dinamica-realocavel">Particionada Dinâmica Realocável</option>
+                    <option value="contigua">Contígua (First/Best/Worst Fit)</option>
+                    <option value="nao-contigua">Não Contígua (Geral)</option>
+                    <option value="paginada">Paginada</option>
+                    <option value="segmentada">Segmentada</option>
+                </optgroup>
+                <optgroup label="Proteção de Memória">
+                    <option value="protecao-basica">Básica (Registradores)</option>
+                    <option value="protecao-avancada">Avançada (Páginas/Segmentos)</option>
+                    <option value="protecao-realocavel">Realocável (Registrador Base/Limite)</option>
+                </optgroup>
+                <optgroup label="Compartilhamento de Memória">
+                    <option value="compartilhamento-processos">Entre Processos</option>
+                    <option value="compartilhamento-threads">Entre Threads</option>
+                    <option value="compartilhamento-realocavel">Realocável</option>
+                </optgroup>
+                <optgroup label="Sobreposição de Memória (Overlay)">
+                    <option value="sobreposicao-manual">Manual</option>
+                    <option value="sobreposicao-automatica">Automática</option>
+                    <option value="sobreposicao-realocavel">Realocável</option>
+                </optgroup>
+                <optgroup label="Liberação de Memória">
+                    <option value="liberacao-manual">Manual (Ex: C/C++)</option>
+                    <option value="liberacao-automatica">Automática (Garbage Collection)</option>
+                    <option value="liberacao-realocavel">Realocável</option>
+                </optgroup>
+            </select>
+        </section>
+
+        <section class="card memory-status">
+            <h2>📊 Status da Memória (KB)</h2>
+            <div class="memory-info">
+                <div>Memória Total: <input type="number" id="memoria-total" value="32" onchange="atualizarStatus()" min="1" max="1000"> KB</div>
+                <div>S.O. Ocupa: <span id="so-ocupado">3.2</span> KB (<span id="so-porcentagem">10</span>%)</div>
+                <div>Memória Livre: <span id="memoria-livre">28.8</span> KB</div>
+                <div>Memória Usada: <span id="memoria-usada">3.2</span> KB</div>
+            </div>
+
+            <div class="memory-bar-container">
+                <div id="memory-bar" class="memory-bar">
+                    <div id="os-segment" class="segment os-segment" style="width: 10%;">S.O. (10%)</div>
+                    <div id="free-segment" class="segment free-segment" style="width: 90%;">Livre (90%)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card simulation-area">
+            <h2 id="simulation-title">Simulação: Selecione uma Técnica Acima</h2>
+            
+            <div id="simulation-controls">
+                <div id="process-input-area" style="display: none;">
+                    <input type="text" id="processo-nome" placeholder="Nome do Processo (Ex: P1)">
+                    <input type="number" id="processo-tamanho" placeholder="Tamanho (KB)" min="1">
+                    <button class="action-button" onclick="alocarProcesso()">Alocar Processo</button>
+                    <button class="action-button secondary" onclick="limparAlocacoes()">Limpar Alocações</button>
+                </div>
+                </div>
+
+            <div id="memory-visualization" class="visualization-grid">
+                <p>O gráfico visual será exibido aqui.</p>
+            </div>
+
+            <div id="process-table-container" class="table-container">
+                <table id="process-table" style="display: none;">
+                    <thead>
+                        <tr><th>Processo</th><th>Tamanho (KB)</th><th>Início (KB)</th><th>Fim (KB)</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <section class="card explanation-area">
+            <h2>📚 Explicação da Técnica</h2>
+            <div id="explanation-content">
+                <p>Selecione uma técnica no menu acima para visualizar sua descrição detalhada, vantagens, desvantagens e um exemplo prático.</p>
+                
+                <h3>Exemplo de Cálculo em Linha:</h3>
+                <pre id="example-calculation">
+                    Memória Total = 32 KB
+                    S.O. = 3.2 KB
+                    
+                    Simulação:
+                    - Processo A (10 KB) alocado
+                    - Processo B (8 KB) alocado
+                    
+                    Cálculo:
+                    Memória livre restante = 32 KB - 3.2 KB (S.O.) - 10 KB (A) - 8 KB (B)
+                    Memória livre restante → 10.8 KB
+                </pre>
+            </div>
+        </section>
+
+        <section class="card comparator-area" style="display: none;">
+            <h2>🔍 Comparador de Técnicas (Opcional)</h2>
+            <p>Insira dados para comparar a eficiência entre First-Fit, Best-Fit e Worst-Fit.</p>
+            </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Desenvolvido para fins educacionais - Sistemas Operacionais</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
