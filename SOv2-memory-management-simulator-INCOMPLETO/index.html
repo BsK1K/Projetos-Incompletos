@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Memória - SO Simulação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="container">
+        <h1>🧠 Gerenciamento de Memória - Sistemas Operacionais</h1>
+        <p>Simulação Interativa e Didática para Estudantes</p>
+    </header>
+
+    <main class="container">
+        
+        <section class="card">
+            <h2>⚙️ Seleção de Técnica e Configuração</h2>
+            <div class="input-group">
+                <label for="memoriaTotal">Memória Total (KB):</label>
+                <input type="number" id="memoriaTotal" value="32" min="16" step="1">
+            </div>
+            <div class="input-group">
+                <label for="soTamanho">Tamanho do S.O. (KB):</label>
+                <input type="number" id="soTamanho" value="3.2" min="0.1" step="0.1">
+            </div>
+            <div class="input-group">
+                <label for="tipoGerenciamento">Técnica de Gerenciamento:</label>
+                <select id="tipoGerenciamento">
+                    <option value="particionada_dinamica_realocavel">Alocação Particionada Dinâmica Realocável</option>
+                    <option value="particionada_estatica">Alocação Particionada Estática</option>
+                    <option value="particionada_dinamica">Alocação Particionada Dinâmica</option>
+                    </select>
+            </div>
+            <button onclick="aplicarConfiguracao()">Aplicar Configurações</button>
+        </section>
+
+        <section class="card">
+            <h2>📊 Status da Memória</h2>
+            <div id="statusMemoria">
+                </div>
+            <div id="graficoMemoria" class="memory-bar">
+                </div>
+        </section>
+        
+        <section class="card">
+    <h2>🧩 Simulação: Particionamento Estático</h2>
+
+    <div class="input-group-row">
+        <div class="input-particoes">
+            <label for="inputParticoes">Tamanhos das Partições (KB, separados por vírgula):</label>
+            <input type="text" id="inputParticoes" value="7, 21, 26, 36" placeholder="Ex: 10, 20, 30">
+        </div>
+
+        <div class="input-processos">
+            <label for="inputProcessos">Processos (KB, separados por vírgula):</label>
+            <input type="text" id="inputProcessos" value="5, 15, 21, 29" placeholder="Ex: 8, 12, 5">
+        </div>
+    </div>
+    <button onclick="simularEstatica()">Simular Alocação (First-Fit)</button>
+    
+    <hr>
+    <h3>Visualização da Memória</h3>
+    <div id="areaSimulacao" class="memory-layout-container">
+        </div>
+    </section>
+
+        <section class="card">
+            <h2>📝 Explicação da Técnica (<span id="tecnicaAtual">Alocação Particionada Dinâmica Realocável</span>)</h2>
+            <div id="explicacaoConteudo">
+                <p>Nesta técnica, as partições são criadas sob demanda (tamanho dinâmico) e, em caso de fragmentação externa, o sistema operacional realiza a **compactação (realocação)** dos processos para juntar todos os espaços livres em um único bloco contíguo.</p>
+                <p><strong>Vantagem:</strong> Elimina a fragmentação externa (pela compactação) e reduz a fragmentação interna (pelo particionamento dinâmico).</p>
+                <p><strong>Desvantagem:</strong> Alto custo de processamento para realizar a compactação.</p>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2>🔍 Comparador de Estratégias (First-Fit, Best-Fit, Worst-Fit)</h2>
+            <div id="comparadorDeEstrategias">
+                </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

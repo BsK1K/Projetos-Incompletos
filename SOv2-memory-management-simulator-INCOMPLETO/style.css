@@ -1,0 +1,202 @@
+:root {
+    --cor-primaria: #007bff; /* Azul */
+    --cor-secundaria: #6c757d; /* Cinza */
+    --cor-suave: #f8f9fa; /* Branco/Cinza claro */
+    --cor-so: #dc3545; /* Vermelho SO */
+    --cor-livre: #28a745; /* Verde Livre */
+    --cor-processo: #007bff; /* Azul Processo */
+    --font-principal: 'Inter', 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-principal);
+    background-color: var(--cor-suave);
+    color: #343a40;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Estilo dos Cards/Seções */
+.card {
+    background-color: white;
+    padding: 20px 30px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--cor-primaria);
+}
+
+/* Inputs e Botões Padrão (para Memória Total/SO) */
+.input-group {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    min-width: 150px;
+}
+
+input[type="number"], input[type="text"], select {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    flex-grow: 1;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: var(--cor-primaria);
+    outline: none;
+}
+
+button {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Novo estilo para alinhar inputs da simulação (Partições e Processos) */
+.input-group-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    /* CORREÇÃO: Adicionando flex-wrap para responsividade */
+    flex-wrap: wrap; 
+}
+
+.input-particoes, .input-processos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Corrigindo a largura total dos inputs dentro do input-group-row */
+.input-particoes input, .input-processos input {
+    flex-grow: 1;
+    width: auto;
+}
+
+/* Gráfico de Memória (Barra Horizontal) */
+.memory-bar {
+    display: flex;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.memory-bar-segment {
+    height: 100%;
+    text-align: center;
+    color: white;
+    font-size: 0.8em;
+    line-height: 30px;
+    white-space: nowrap;
+    transition: width 0.5s ease-out;
+}
+
+.segment-so { background-color: var(--cor-so); }
+.segment-livre { background-color: var(--cor-livre); }
+.segment-processo { background-color: var(--cor-processo); }
+
+/* Área de Simulação (Estrutura Vertical - Bloco do Anexo) */
+.memory-layout-container {
+    display: flex;
+    flex-direction: column;
+    width: 200px; /* Largura fixa para o bloco visual */
+    margin: 20px auto;
+    border: 2px solid black;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative; /* Necessário para posicionar o "Base" no JS */
+    padding-top: 20px; /* Espaço para o endereço Base */
+}
+
+.memory-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 5px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative; /* Para o endereço base dentro do bloco */
+}
+
+.memory-block:last-child {
+    border-bottom: none;
+}
+
+.memory-block-content strong {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 2px 0;
+}
+
+.block-so {
+    background-color: rgba(220, 53, 69, 0.7); /* Vermelho Suave */
+    color: white;
+}
+
+.block-processo {
+    background-color: rgba(0, 123, 255, 0.7); /* Azul Suave (similar ao anexo) */
+    color: black;
+}
+
+.block-livre {
+    background-color: rgba(40, 167, 69, 0.7); /* Verde Suave */
+    color: black;
+    font-style: italic;
+}
+
+/* Estilo para as Tabelas de Resposta */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
