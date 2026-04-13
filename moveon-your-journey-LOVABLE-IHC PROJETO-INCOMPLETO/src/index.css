@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 10% 15%;
+
+    /* Graphite - Primary brand color */
+    --primary: 210 10% 25%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Deep Wine - Secondary accent */
+    --secondary: 340 50% 30%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 20 5% 95%;
+    --muted-foreground: 20 5% 45%;
+
+    /* Dark Emerald - Accent color */
+    --accent: 160 60% 30%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Metallic Nude */
+    --nude: 30 15% 70%;
+    --nude-foreground: 210 10% 25%;
+
+    /* Grayish Purple */
+    --purple-gray: 270 20% 40%;
+    --purple-gray-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 90%;
+    --input: 210 15% 90%;
+    --ring: 160 60% 30%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210 10% 25%) 0%, hsl(270 20% 40%) 100%);
+    --gradient-vip: linear-gradient(135deg, hsl(340 50% 30%) 0%, hsl(210 10% 25%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(160 60% 30%) 0%, hsl(270 20% 40%) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 24px rgba(160, 140, 120, 0.15);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 210 15% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 210 15% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 210 15% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 30 15% 70%;
+    --primary-foreground: 210 10% 15%;
+
+    --secondary: 340 45% 40%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 210 10% 15%;
+    --muted-foreground: 20 5% 65%;
+
+    --accent: 160 55% 35%;
+    --accent-foreground: 0 0% 98%;
+
+    --nude: 30 10% 30%;
+    --nude-foreground: 0 0% 95%;
+
+    --purple-gray: 270 15% 50%;
+    --purple-gray-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 15% 18%;
+    --input: 210 15% 18%;
+    --ring: 160 55% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_24px_rgba(160,140,120,0.3)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-md border border-white/10;
+  }
+}
