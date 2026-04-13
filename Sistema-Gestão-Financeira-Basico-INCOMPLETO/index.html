@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão Financeira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#4CAF50',
+                        warning: '#FFC107',
+                        danger: '#F44336',
+                        light: {
+                            bg: '#FFFFFF',
+                            card: '#F5F7FA',
+                            text: '#333333'
+                        },
+                        dark: {
+                            bg: '#181818',
+                            card: '#262626',
+                            text: '#E0E0E0'
+                        }
+                    }
+                }
+            }
+        }
+
+        // Detectar modo escuro
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text min-h-screen transition-colors duration-200">
+    <div class="container mx-auto px-4 py-4 max-w-7xl">
+        <nav class="mb-6 bg-white dark:bg-dark-card rounded-xl shadow-md p-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i class="fas fa-file-invoice-dollar text-primary text-3xl mr-3"></i>
+                    <h1 class="text-xl md:text-2xl font-bold">Sistema de Gestão Financeira</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="text-xl">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-2 focus:outline-none">
+                            <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="hidden md:inline">Administrador</span>
+                            <i class="fas fa-chevron-down text-sm"></i>
+                        </button>
+                        <div id="userMenu" class="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-card rounded-md shadow-lg py-1 z-10 hidden">
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <i class="fas fa-user-cog mr-2"></i> Configurações
+                            </a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <i class="fas fa-sign-out-alt mr-2"></i> Sair
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-white dark:bg-dark-card p-6 rounded-xl shadow-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">A Receber</h2>
+                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-hand-holding-dollar text-blue-500 dark:text-blue-300"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold mb-2">R$ <span id="totalReceivable">4.250,00</span></p>
+                <div class="flex items-center text-green-500">
+                    <i class="fas fa-arrow-up mr-1"></i>
+                    <span>12% desde o mês passado</span>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-dark-card p-6 rounded-xl shadow-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Pago</h2>
+                    <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
+                        <i class="fas fa-check text-green-500 dark:text-green-300"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold mb-2">R$ <span id="totalPaid">2.875,50</span></p>
+                <div class="flex items-center text-green-500">
+                    <i class="fas fa-arrow-up mr-1"></i>
+                    <span>8% desde o mês passado</span>
+                </div>
+            </div>
+            
+            <div class="bg-white dark:bg-dark-card p-6 rounded-xl shadow-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Atrasado</h2>
+                    <div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
+                        <i class="fas fa-exclamation-circle text-red-500 dark:text-red-300"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold mb-2">R$ <span id="totalOverdue">850,00</span></p>
+                <div class="flex items-center text-red-500">
+                    <i class="fas fa-arrow-down mr-1"></i>
+                    <span>5% desde o mês passado</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+                <div class="p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-lg font-semibold">Ações Rápidas</h2>
+                </div>
+                <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button id="addNoteBtn" class="flex flex-col items-center justify-center p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-800/50 transition duration-200">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center mb-2">
+                            <i class="fas fa-file-invoice text-blue-500 dark:text-blue-300"></i>
+                        </div>
+                        <span>Nova Nota</span>
+                    </button>
+                    <button id="addClientBtn" class="flex flex-col items-center justify-center p-4 bg-green-50 dark:bg-green-900/30 rounded-lg hover:bg-green-100 dark:hover:bg-green-800/50 transition duration-200">
+                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center mb-2">
+                            <i class="fas fa-user-plus text-green-500 dark:text-green-300"></i>
+                        </div>
+                        <span>Novo Cliente</span>
+                    </button>
+                    <button id="addProductBtn" class="flex flex-col items-center justify-center p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-800/50 transition duration-200">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-800 flex items-center justify-center mb-2">
+                            <i class="fas fa-box text-purple-500 dark:text-purple-300"></i>
+                        </div>
+                        <span>Novo Produto</span>
+                    </button>
+                    <button id="generateReportBtn" class="flex flex-col items-center justify-center p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg hover:bg-amber-100 dark:hover:bg-amber-800/50 transition duration-200">
+                        <div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-800 flex items-center justify-center mb-2">
+                            <i class="fas fa-chart-bar text-amber-500 dark:text-amber-300"></i>
+                        </div>
+                        <span>Relatório</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mb-6">
+            <div class="border-b border-gray-200 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px" id="tabs">
+                    <li class="mr-2">
+                        <button class="tab-button active py-3 px-4 text-center border-b-2 border-primary" data-tab="notesTab">
+                            <i class="fas fa-file-invoice mr-2"></i>Notas
+                        </button>
+                    </li>
+                    <li class="mr-2">
+                        <button class="tab-button py-3 px-4 text-center border-b-2 border-transparent" data-tab="clientsTab">
+                            <i class="fas fa-users mr-2"></i>Clientes
+                        </button>
+                    </li>
+                    <li class="mr-2">
+                        <button class="tab-button py-3 px-4 text-center border-b-2 border-transparent" data-tab="productsTab">
+                            <i class="fas fa-boxes mr-2"></i>Produtos
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tabContent" class="mb-6">
+            <!-- Notas Tab -->
+            <div id="notesTab" class="tab-content active">
+                <div class="mb-6 bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                        <h2 class="text-lg font-semibold">Notas a Receber</h2>
+                        <div class="flex space-x-2">
+                            <div class="relative">
+                                <input type="text" id="searchReceivable" placeholder="Buscar..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <button id="filterReceivableBtn" class="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                                <i class="fas fa-filter text-gray-600 dark:text-gray-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nota</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Cliente</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Data Vencimento</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Valor</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-dark-card divide-y divide-gray-200 dark:divide-gray-700" id="receivableList">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">#NF-1001</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Tech Solutions Ltda</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">15/07/2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 1.250,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">Pendente</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="pay-note-btn text-green-500 hover:text-green-700 mr-3"><i class="fas fa-check-circle"></i></button>
+                                        <button class="edit-note-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-note-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">#NF-1002</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Marketing Digital SA</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">10/07/2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 850,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">Atrasado</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="pay-note-btn text-green-500 hover:text-green-700 mr-3"><i class="fas fa-check-circle"></i></button>
+                                        <button class="edit-note-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-note-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">#NF-1003</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Contabilidade Express</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">20/07/2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 2.150,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">Pendente</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="pay-note-btn text-green-500 hover:text-green-700 mr-3"><i class="fas fa-check-circle"></i></button>
+                                        <button class="edit-note-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-note-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700">
+                        <div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium">3</span> resultados
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Anterior
+                            </button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Próximo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                        <h2 class="text-lg font-semibold">Notas Pagas</h2>
+                        <div class="flex space-x-2">
+                            <div class="relative">
+                                <input type="text" id="searchPaid" placeholder="Buscar..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <button id="filterPaidBtn" class="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                                <i class="fas fa-filter text-gray-600 dark:text-gray-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nota</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Cliente</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Data Pagamento</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Valor</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Método</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-dark-card divide-y divide-gray-200 dark:divide-gray-700" id="paidList">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">#NF-995</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Consultoria RH Ltda</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">01/07/2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 1.750,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Transferência</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-note-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="delete-note-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">#NF-997</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Tech Solutions Ltda</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">05/07/2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 875,50</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Pix</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-note-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="delete-note-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">#NF-999</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Contabilidade Express</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">02/07/2023</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 250,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Boleto</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-note-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="delete-note-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700">
+                        <div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                Mostrando <span class="font-medium">1</span> a <span class="font-medium">3</span> de <span class="font-medium">3</span> resultados
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Anterior
+                            </button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Próximo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clientes Tab -->
+            <div id="clientsTab" class="tab-content hidden">
+                <div class="mb-6 bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                        <h2 class="text-lg font-semibold">Lista de Clientes</h2>
+                        <div class="flex space-x-2">
+                            <div class="relative">
+                                <input type="text" id="searchClients" placeholder="Buscar..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <button id="addClientBtnAlt" class="p-2 bg-primary text-white rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Código</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nome</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">CNPJ/CPF</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Contato</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-dark-card divide-y divide-gray-200 dark:divide-gray-700" id="clientList">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">CLI-001</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Tech Solutions Ltda</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">12.345.678/0001-99</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">(11) 98765-4321</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-client-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-client-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-client-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">CLI-002</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Marketing Digital SA</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">23.456.789/0001-88</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">(11) 91234-5678</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-client-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-client-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-client-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">CLI-003</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Contabilidade Express</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">34.567.890/0001-77</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">(11) 98877-6655</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-client-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-client-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-client-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">CLI-004</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Consultoria RH Ltda</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">45.678.901/0001-66</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">(11) 92233-4455</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">Pendente</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-client-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-client-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-client-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700">
+                        <div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                Mostrando <span class="font-medium">1</span> a <span class="font-medium">4</span> de <span class="font-medium">4</span> resultados
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Anterior
+                            </button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Próximo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produtos Tab -->
+            <div id="productsTab" class="tab-content hidden">
+                <div class="mb-6 bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                        <h2 class="text-lg font-semibold">Lista de Produtos</h2>
+                        <div class="flex space-x-2">
+                            <div class="relative">
+                                <input type="text" id="searchProducts" placeholder="Buscar..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <button id="addProductBtnAlt" class="p-2 bg-primary text-white rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Código</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nome</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Categoria</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Valor</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-dark-card divide-y divide-gray-200 dark:divide-gray-700" id="productList">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">PROD-001</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Consultoria Financeira</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Serviços</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 1.500,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-product-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-product-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-product-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">PROD-002</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Suporte Técnico</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Serviços</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 800,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-product-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-product-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-product-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">PROD-003</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Pacote Marketing Digital</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Marketing</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 2.200,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-product-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-product-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-product-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">PROD-004</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Assessoria Contábil</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Contabilidade</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 1.200,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">Inativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-product-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-product-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-product-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">PROD-005</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Treinamento RH</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">Recursos Humanos</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">R$ 1.800,00</td>
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">Ativo</span></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                                        <button class="view-product-btn text-gray-500 hover:text-gray-700 mr-3"><i class="fas fa-eye"></i></button>
+                                        <button class="edit-product-btn text-blue-500 hover:text-blue-700 mr-3"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-product-btn text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700">
+                        <div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                Mostrando <span class="font-medium">1</span> a <span class="font-medium">5</span> de <span class="font-medium">5</span> resultados
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Anterior
+                            </button>
+                            <button class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-dark-card text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                Próximo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Nota -->
+    <div id="noteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <h2 id="noteModalTitle" class="text-lg font-semibold">Nova Nota</h2>
+                <button id="closeNoteModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="noteForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="noteNumber" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Número da Nota</label>
+                            <input type="text" id="noteNumber" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: NF-1001">
+                        </div>
+                        <div>
+                            <label for="noteClient" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Cliente</label>
+                            <div class="relative">
+                                <input type="text" id="noteClient" class="w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Selecione o cliente">
+                                <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <div id="clientDropdown" class="absolute z-10 mt-1 w-full bg-white dark:bg-dark-card rounded-md shadow-lg max-h-60 overflow-auto hidden">
+                                <ul class="py-1">
+                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">Tech Solutions Ltda</li>
+                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">Marketing Digital SA</li>
+                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">Contabilidade Express</li>
+                                    <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">Consultoria RH Ltda</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="noteDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Data de Emissão</label>
+                            <input type="date" id="noteDate" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                        </div>
+                        <div>
+                            <label for="noteDueDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Data de Vencimento</label>
+                            <input type="date" id="noteDueDate" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                        </div>
+                        <div>
+                            <label for="noteStatus" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                            <select id="noteStatus" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <option value="pending">Pendente</option>
+                                <option value="paid">Pago</option>
+                                <option value="overdue">Atrasado</option>
+                                <option value="canceled">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Itens</label>
+                        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+                            <div id="noteItems" class="space-y-4">
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex-grow grid grid-cols-12 gap-2">
+                                        <div class="col-span-5 sm:col-span-6">
+                                            <input type="text" placeholder="Produto" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                        </div>
+                                        <div class="col-span-3 sm:col-span-2">
+                                            <input type="number" placeholder="Qtd." class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                        </div>
+                                        <div class="col-span-4 sm:col-span-4">
+                                            <input type="text" placeholder="Valor" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="text-red-500 hover:text-red-700">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="button" id="addItemBtn" class="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Adicionar Item
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+                        <div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Subtotal: <span class="font-semibold">R$ 0,00</span></p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Imposto: <span class="font-semibold">R$ 0,00</span></p>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-gray-800 dark:text-white">Total: R$ 0,00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-end space-x-4">
+                        <button type="button" id="cancelNoteBtn" class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Cliente -->
+    <div id="clientModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <h2 id="clientModalTitle" class="text-lg font-semibold">Novo Cliente</h2>
+                <button id="closeClientModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="clientForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="clientCode" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Código</label>
+                            <input type="text" id="clientCode" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: CLI-001">
+                        </div>
+                        <div>
+                            <label for="clientName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome/Razão Social</label>
+                            <input type="text" id="clientName" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Nome completo ou razão social">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="clientDocument" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">CNPJ/CPF</label>
+                            <input type="text" id="clientDocument" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: 12.345.678/0001-99">
+                        </div>
+                        <div>
+                            <label for="clientType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tipo</label>
+                            <select id="clientType" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <option value="legal">Pessoa Jurídica</option>
+                                <option value="physical">Pessoa Física</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="clientPhone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Telefone</label>
+                            <input type="text" id="clientPhone" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: (11) 98765-4321">
+                        </div>
+                        <div>
+                            <label for="clientEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">E-mail</label>
+                            <input type="email" id="clientEmail" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: contato@empresa.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="clientAddress" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Endereço</label>
+                        <input type="text" id="clientAddress" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Endereço completo">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="clientCity" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Cidade</label>
+                            <input type="text" id="clientCity" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: São Paulo">
+                        </div>
+                        <div>
+                            <label for="clientState" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Estado</label>
+                            <input type="text" id="clientState" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: SP">
+                        </div>
+                        <div>
+                            <label for="clientStatus" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                            <select id="clientStatus" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <option value="active">Ativo</option>
+                                <option value="pending">Pendente</option>
+                                <option value="inactive">Inativo</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="clientNotes" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Observações</label>
+                        <textarea id="clientNotes" rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Observações adicionais sobre o cliente"></textarea>
+                    </div>
+                    
+                    <div class="flex items-center justify-end space-x-4">
+                        <button type="button" id="cancelClientBtn" class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Produto -->
+    <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <h2 id="productModalTitle" class="text-lg font-semibold">Novo Produto</h2>
+                <button id="closeProductModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="productForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="productCode" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Código</label>
+                            <input type="text" id="productCode" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: PROD-001">
+                        </div>
+                        <div>
+                            <label for="productName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome</label>
+                            <input type="text" id="productName" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Nome do produto ou serviço">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="productCategory" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Categoria</label>
+                            <select id="productCategory" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <option value="services">Serviços</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="accounting">Contabilidade</option>
+                                <option value="hr">Recursos Humanos</option>
+                                <option value="it">Tecnologia</option>
+                                <option value="other">Outros</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="productType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tipo</label>
+                            <select id="productType" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <option value="service">Serviço</option>
+                                <option value="product">Produto</option>
+                                <option value="subscription">Assinatura</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="productValue" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Valor (R$)</label>
+                            <input type="text" id="productValue" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: 1500,00">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="productDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Descrição</label>
+                        <textarea id="productDescription" rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Descrição detalhada do produto ou serviço"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="productTax" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Taxa de Imposto (%)</label>
+                            <input type="number" id="productTax" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Ex: 18">
+                        </div>
+                        <div>
+                            <label for="productStatus" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
+                            <select id="productStatus" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                                <option value="active">Ativo</option>
+                                <option value="inactive">Inativo</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-end space-x-4">
+                        <button type="button" id="cancelProductBtn" class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de Notificação -->
+    <div id="notificationToast" class="fixed bottom-4 right-4 bg-white dark:bg-dark-card shadow-lg rounded-lg p-4 flex items-center max-w-md transform translate-y-10 opacity-0 transition-all duration-300 z-50">
+        <div class="mr-3 flex-shrink-0">
+            <i id="notificationIcon" class="fas fa-check-circle text-green-500 text-xl"></i>
+        </div>
+        <div class="flex-grow">
+            <p id="notificationTitle" class="font-medium">Sucesso!</p>
+            <p id="notificationMessage" class="text-sm text-gray-600 dark:text-gray-400">Operação realizada com sucesso.</p>
+        </div>
+        <button id="closeNotification" class="ml-4 text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Estado da aplicação
+        const appState = {
+            clients: [],
+            products: [],
+            receivableNotes: [],
+            paidNotes: [],
+            darkMode: document.documentElement.classList.contains('dark')
+        };
+
+        // Manipulação do modo escuro
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            appState.darkMode = document.documentElement.classList.contains('dark');
+        });
+
+        // Manipulação do menu de usuário
+        document.getElementById('userMenuBtn').addEventListener('click', () => {
+            document.getElementById('userMenu').classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#userMenuBtn') && !e.target.closest('#userMenu')) {
+                document.getElementById('userMenu').classList.add('hidden');
+            }
+        });
+
+        // Sistema de abas
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                
+                // Desativar todas as abas
+                tabButtons.forEach(btn => btn.classList.remove('active', 'border-primary'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+                
+                // Ativar aba selecionada
+                button.classList.add('active', 'border-primary');
+                document.getElementById(tabId).classList.remove('hidden');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Manipulação de modais
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // Botões para abrir modais
+        document.getElementById('addNoteBtn').addEventListener('click', () => openModal('noteModal'));
+        document.getElementById('addClientBtn').addEventListener('click', () => openModal('clientModal'));
+        document.getElementById('addProductBtn').addEventListener('click', () => openModal('productModal'));
+        document.getElementById('addClientBtnAlt').addEventListener('click', () => openModal('clientModal'));
+        document.getElementById('addProductBtnAlt').addEventListener('click', () => openModal('productModal'));
+
+        // Botões para fechar modais
+        document.getElementById('closeNoteModal').addEventListener('click', () => closeModal('noteModal'));
+        document.getElementById('cancelNoteBtn').addEventListener('click', () => closeModal('noteModal'));
+        document.getElementById('closeClientModal').addEventListener('click', () => closeModal('clientModal'));
+        document.getElementById('cancelClientBtn').addEventListener('click', () => closeModal('clientModal'));
+        document.getElementById('closeProductModal').addEventListener('click', () => closeModal('productModal'));
+        document.getElementById('cancelProductBtn').addEventListener('click', () => closeModal('productModal'));
+
+        // Auto-completar cliente no formulário de nota
+        const noteClientInput = document.getElementById('noteClient');
+        const clientDropdown = document.getElementById('clientDropdown');
+
+        noteClientInput.addEventListener('focus', () => {
+            clientDropdown.classList.remove('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#noteClient') && !e.target.closest('#clientDropdown')) {
+                clientDropdown.classList.add('hidden');
+            }
+        });
+
+        clientDropdown.querySelectorAll('li').forEach(item => {
+            item.addEventListener('click', () => {
+                noteClientInput.value = item.textContent;
+                clientDropdown.classList.add('hidden');
+            });
+        });
+
+        // Adicionar item ao formulário de nota
+        document.getElementById('addItemBtn').addEventListener('click', () => {
+            const itemsContainer = document.getElementById('noteItems');
+            const newItem = document.createElement('div');
+            newItem.className = 'flex items-center space-x-2';
+            newItem.innerHTML = `
+                <div class="flex-grow grid grid-cols-12 gap-2">
+                    <div class="col-span-5 sm:col-span-6">
+                        <input type="text" placeholder="Produto" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                    </div>
+                    <div class="col-span-3 sm:col-span-2">
+                        <input type="number" placeholder="Qtd." class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                    </div>
+                    <div class="col-span-4 sm:col-span-4">
+                        <input type="text" placeholder="Valor" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-card focus:outline-none focus:ring-2 focus:ring-primary text-base">
+                    </div>
+                </div>
+                <button type="button" class="text-red-500 hover:text-red-700 remove-item-btn">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            itemsContainer.appendChild(newItem);
+            
+            // Adicionar evento para remover item
+            newItem.querySelector('.remove-item-btn').addEventListener('click', () => {
+                newItem.remove();
+            });
+        });
+
+        // Manipulação de formulários
+        document.getElementById('noteForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Nota salva com sucesso!', 'success');
+            closeModal('noteModal');
+        });
+
+        document.getElementById('clientForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Cliente salvo com sucesso!', 'success');
+            closeModal('clientModal');
+        });
+
+        document.getElementById('productForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showNotification('Produto salvo com sucesso!', 'success');
+            closeModal('productModal');
+        });
+
+        // Sistema de notificações
+        function showNotification(message, type = 'success') {
+            const toast = document.getElementById('notificationToast');
+            const icon = document.getElementById('notificationIcon');
+            const title = document.getElementById('notificationTitle');
+            const msg = document.getElementById('notificationMessage');
+            
+            // Configurar notificação
+            if (type === 'success') {
+                icon.className = 'fas fa-check-circle text-green-500 text-xl';
+                title.textContent = 'Sucesso!';
+            } else if (type === 'error') {
+                icon.className = 'fas fa-exclamation-circle text-red-500 text-xl';
+                title.textContent = 'Erro!';
+            } else if (type === 'warning') {
+                icon.className = 'fas fa-exclamation-triangle text-yellow-500 text-xl';
+                title.textContent = 'Atenção!';
+            } else if (type === 'info') {
+                icon.className = 'fas fa-info-circle text-blue-500 text-xl';
+                title.textContent = 'Informação';
+            }
+            
+            msg.textContent = message;
+            
+            // Exibir notificação
+            toast.classList.remove('translate-y-10', 'opacity-0');
+            
+            // Esconder após 5 segundos
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+            }, 5000);
+        }
+
+        // Fechar notificação
+        document.getElementById('closeNotification').addEventListener('click', () => {
+            document.getElementById('notificationToast').classList.add('translate-y-10', 'opacity-0');
+        });
+
+        // Ações nas tabelas
+        document.querySelectorAll('.pay-note-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                showNotification('Nota marcada como paga!', 'success');
+            });
+        });
+
+        document.querySelectorAll('.edit-note-btn, .edit-client-btn, .edit-product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                if (btn.classList.contains('edit-note-btn')) {
+                    openModal('noteModal');
+                    document.getElementById('noteModalTitle').textContent = 'Editar Nota';
+                } else if (btn.classList.contains('edit-client-btn')) {
+                    openModal('clientModal');
+                    document.getElementById('clientModalTitle').textContent = 'Editar Cliente';
+                } else {
+                    openModal('productModal');
+                    document.getElementById('productModalTitle').textContent = 'Editar Produto';
+                }
+            });
+        });
+
+        document.querySelectorAll('.delete-note-btn, .delete-client-btn, .delete-product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const type = btn.classList.contains('delete-note-btn') ? 'nota' : 
+                             btn.classList.contains('delete-client-btn') ? 'cliente' : 'produto';
+                if (confirm(`Tem certeza que deseja excluir este ${type}?`)) {
+                    showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} excluído com sucesso!`, 'success');
+                }
+            });
+        });
+
+        document.querySelectorAll('.view-note-btn, .view-client-btn, .view-product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                if (btn.classList.contains('view-note-btn')) {
+                    openModal('noteModal');
+                    document.getElementById('noteModalTitle').textContent = 'Visualizar Nota';
+                } else if (btn.classList.contains('view-client-btn')) {
+                    openModal('clientModal');
+                    document.getElementById('clientModalTitle').textContent = 'Visualizar Cliente';
+                } else {
+                    openModal('productModal');
+                    document.getElementById('productModalTitle').textContent = 'Visualizar Produto';
+                }
+            });
+        });
+
+        // Gerar relatório
+        document.getElementById('generateReportBtn').addEventListener('click', () => {
+            showNotification('Gerando relatório...', 'info');
+            setTimeout(() => {
+                showNotification('Relatório gerado com sucesso!', 'success');
+            }, 2000);
+        });
+
+        // Função para busca nas tabelas
+        function setupSearch(inputId, tableId) {
+            const searchInput = document.getElementById(inputId);
+            const tableRows = document.querySelectorAll(`#${tableId} tr:not(:first-child)`);
+            
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                tableRows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Configurar busca para cada tabela
+        setupSearch('searchReceivable', 'receivableList');
+        setupSearch('searchPaid', 'paidList');
+        setupSearch('searchClients', 'clientList');
+        setupSearch('searchProducts', 'productList');
+
+        // Filtros
+        document.getElementById('filterReceivableBtn').addEventListener('click', () => {
+            showNotification('Função de filtro em desenvolvimento', 'info');
+        });
+
+        document.getElementById('filterPaidBtn').addEventListener('click', () => {
+            showNotification('Função de filtro em desenvolvimento', 'info');
+        });
+    </script>
+</body>
+</html>
