@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mãe & Filho Enxovais — O Enxoval dos Sonhos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rosa:#F5D5CC;--rosa-esc:#C97A6A;--rosa-med:#E8A99A;
+  --creme:#FAF6F2;--creme-esc:#F0E8E0;
+  --marrom:#5C3D2E;--marrom-cl:#8B6355;
+  --texto:#2E1F1A;--texto-leve:#7A6059;
+  --branco:#FFFFFF;--sombra:rgba(92,61,46,0.08);
+  --shopee:#EE4D2D;--ml:#FFE600;--ml-text:#333;--tiktok:#010101;--kwai:#FF6600;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--texto);overflow-x:hidden}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none;animation:fadeIn .35s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--marrom);color:var(--rosa);text-align:center;font-size:12px;letter-spacing:.06em;padding:8px 16px}
+.topbar a{color:var(--rosa-med);text-decoration:none}
+
+/* ── HEADER ── */
+header{background:var(--branco);position:sticky;top:0;z-index:200;border-bottom:1px solid var(--creme-esc)}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;cursor:pointer}
+.logo-main{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--marrom);letter-spacing:.02em}
+.logo-sub{font-size:10px;letter-spacing:.18em;color:var(--rosa-esc);text-transform:uppercase;font-weight:400;margin-top:2px}
+nav{display:flex;gap:6px;align-items:center}
+.nav-btn{font-size:13px;letter-spacing:.03em;color:var(--texto-leve);text-decoration:none;font-weight:400;cursor:pointer;padding:7px 14px;border-radius:30px;border:none;background:transparent;transition:all .2s;font-family:'DM Sans',sans-serif}
+.nav-btn:hover,.nav-btn.active{color:var(--marrom);background:var(--creme)}
+.header-right{display:flex;gap:10px;align-items:center}
+.btn-wpp{background:var(--marrom);color:var(--branco);border:none;padding:9px 20px;border-radius:40px;font-size:12px;font-family:'DM Sans',sans-serif;letter-spacing:.05em;cursor:pointer;font-weight:400;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:6px}
+.btn-wpp:hover{background:var(--marrom-cl);transform:translateY(-1px)}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--creme-esc);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;color:var(--texto-leve);font-size:15px}
+.icon-btn:hover{background:var(--creme-esc)}
+.cart-badge{position:relative}
+.badge-count{position:absolute;top:-4px;right:-4px;background:var(--rosa-esc);color:white;width:16px;height:16px;border-radius:50%;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:500}
+
+/* ── BUTTONS ── */
+.btn-primary{background:var(--marrom);color:var(--branco);border:none;padding:13px 30px;border-radius:40px;font-size:13px;font-family:'DM Sans',sans-serif;letter-spacing:.05em;cursor:pointer;font-weight:400;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-primary:hover{background:var(--marrom-cl);transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,61,46,.2)}
+.btn-outline{border:1px solid var(--rosa-esc);color:var(--rosa-esc);background:transparent;padding:13px 30px;border-radius:40px;font-size:13px;font-family:'DM Sans',sans-serif;letter-spacing:.05em;cursor:pointer;font-weight:400;text-decoration:none;transition:all .2s;display:inline-block}
+.btn-outline:hover{background:var(--rosa);transform:translateY(-2px)}
+.btn-sm{padding:8px 18px;font-size:12px}
+
+/* ── SECTION ── */
+.section{padding:72px 28px}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:52px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--rosa-esc);font-weight:400;margin-bottom:12px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--marrom);line-height:1.2}
+.section-title em{font-style:italic}
+.section-desc{font-size:14px;color:var(--texto-leve);margin-top:12px;line-height:1.8;max-width:460px;margin-left:auto;margin-right:auto}
+
+/* ════════════════════════════════════════
+   HOME PAGE
+════════════════════════════════════════ */
+
+/* HERO */
+.hero{min-height:88vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-content{background:var(--creme);display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 80px;position:relative}
+.hero-content::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rosa-esc),var(--rosa-med),transparent)}
+.hero-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--rosa-esc);font-weight:400;margin-bottom:20px;animation:fadeUp .6s .1s both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,62px);font-weight:300;color:var(--marrom);line-height:1.15;margin-bottom:22px;animation:fadeUp .6s .2s both}
+.hero-title em{font-style:italic;color:var(--rosa-esc)}
+.hero-desc{font-size:15px;color:var(--texto-leve);line-height:1.85;max-width:400px;margin-bottom:38px;font-weight:300;animation:fadeUp .6s .3s both}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .6s .4s both}
+.hero-trust{margin-top:48px;display:flex;gap:28px;align-items:center;animation:fadeUp .6s .5s both}
+.trust-item{display:flex;flex-direction:column;gap:2px}
+.trust-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--marrom);line-height:1}
+.trust-label{font-size:11px;color:var(--texto-leve);letter-spacing:.04em}
+.trust-div{width:1px;height:36px;background:var(--creme-esc)}
+.hero-visual{background:var(--rosa);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-deco{position:absolute;inset:0}
+.deco-c{position:absolute;border-radius:50%;background:rgba(255,255,255,.18)}
+.dc1{width:380px;height:380px;top:-90px;right:-90px}
+.dc2{width:220px;height:220px;bottom:50px;left:20px}
+.dc3{width:110px;height:110px;top:42%;left:38%}
+.hero-big-icon{font-size:130px;opacity:.55;position:relative;z-index:1;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-card{background:rgba(255,255,255,.8);backdrop-filter:blur(10px);border-radius:18px;padding:20px 24px;width:220px;position:absolute;bottom:56px;left:36px;box-shadow:0 12px 40px rgba(92,61,46,.12)}
+.hero-card .tag{background:var(--rosa-esc);color:white;font-size:10px;padding:3px 10px;border-radius:20px;letter-spacing:.07em;display:inline-block;margin-bottom:8px}
+.hero-card h4{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;color:var(--marrom);margin-bottom:6px}
+.hero-card .price strong{color:var(--marrom);font-size:19px;font-family:'Cormorant Garamond',serif;font-weight:500}
+.hero-badge{position:absolute;top:36px;right:36px;background:var(--marrom);color:var(--rosa);width:82px;height:82px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;letter-spacing:.05em;text-align:center;line-height:1.5}
+.hero-badge strong{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;display:block;line-height:1}
+
+/* DIFERENCIAIS */
+.difs{background:var(--marrom);padding:36px 28px}
+.difs-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.dif{display:flex;align-items:center;gap:14px;padding:14px 24px;border-right:1px solid rgba(245,213,204,.14)}
+.dif:last-child{border-right:none}
+.dif-icon{font-size:22px;flex-shrink:0}
+.dif-title{font-size:13px;font-weight:500;color:var(--rosa);margin-bottom:2px}
+.dif-desc{font-size:11px;color:rgba(245,213,204,.55);line-height:1.5}
+
+/* CATEGORIAS */
+.cat-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:14px}
+.cat-card{background:var(--creme);border-radius:16px;padding:24px 14px 18px;text-align:center;cursor:pointer;transition:all .25s;border:1.5px solid transparent}
+.cat-card:hover{border-color:var(--rosa-med);transform:translateY(-4px);box-shadow:0 10px 30px var(--sombra);background:var(--branco)}
+.cat-card.selected{border-color:var(--rosa-esc);background:var(--branco)}
+.cat-icon-big{font-size:30px;margin-bottom:10px;display:block}
+.cat-name{font-size:11px;font-weight:500;color:var(--marrom);letter-spacing:.03em;line-height:1.4}
+.cat-count{font-size:10px;color:var(--texto-leve);margin-top:3px}
+
+/* PRODUTOS DESTAQUE */
+.prod-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:44px;flex-wrap:wrap}
+.tab{padding:8px 22px;border-radius:30px;border:1px solid var(--creme-esc);font-size:13px;cursor:pointer;background:transparent;color:var(--texto-leve);font-family:'DM Sans',sans-serif;transition:all .2s}
+.tab.active,.tab:hover{background:var(--marrom);color:var(--branco);border-color:var(--marrom)}
+
+/* ── PRODUCT DISPLAY MODES ── */
+
+/* Mode 1: Grid normal */
+.view-grid .produtos-container{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+
+/* Mode 2: Lookbook */
+.view-lookbook .produtos-container{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:18px}
+.view-lookbook .prod-card:nth-child(1){grid-column:1/3;grid-row:1/3}
+.view-lookbook .prod-card:nth-child(1) .prod-img{aspect-ratio:auto;height:400px}
+.view-lookbook .prod-card:nth-child(4){grid-column:2/4}
+
+/* Mode 3: Lista */
+.view-list .produtos-container{display:flex;flex-direction:column;gap:14px}
+.view-list .prod-card{display:grid;grid-template-columns:160px 1fr auto;border-radius:14px}
+.view-list .prod-img{aspect-ratio:1;height:160px;border-radius:14px 0 0 14px}
+.view-list .prod-info{padding:20px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.view-list .prod-actions{padding:20px;display:flex;flex-direction:column;gap:10px;justify-content:center;min-width:160px;border-left:1px solid var(--creme-esc)}
+.view-list .prod-actions .btn-primary{text-align:center}
+
+/* PRODUCT CARD BASE */
+.prod-card{background:var(--branco);border-radius:16px;overflow:hidden;transition:all .25s;cursor:pointer;border:1px solid var(--creme-esc);display:flex;flex-direction:column}
+.prod-card:hover{box-shadow:0 16px 40px var(--sombra);transform:translateY(-4px);border-color:transparent}
+.prod-img{aspect-ratio:1;background:var(--rosa);display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden;flex-shrink:0}
+.prod-img.bg-mos{background:#E8F4E8}
+.prod-img.bg-cam{background:#E8E8F4}
+.prod-img.bg-man{background:#F4E8F4}
+.prod-img.bg-ban{background:#E8F4F4}
+.prod-img.bg-rou{background:#F4F4E8}
+.prod-img.bg-ace{background:#F4E8E8}
+.prod-img.bg-dec{background:#F4F0E8}
+.prod-badge{position:absolute;top:10px;left:10px;font-size:10px;padding:3px 9px;border-radius:20px;letter-spacing:.05em}
+.badge-dest{background:var(--marrom);color:var(--rosa)}
+.badge-novo{background:var(--rosa-esc);color:white}
+.badge-promo{background:#E74C3C;color:white}
+.prod-wishlist{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;font-size:14px;transition:all .2s;opacity:0}
+.prod-card:hover .prod-wishlist{opacity:1}
+.prod-wishlist:hover{background:white;transform:scale(1.1)}
+.prod-info{padding:16px;flex:1;display:flex;flex-direction:column}
+.prod-sku{font-size:10px;color:var(--texto-leve);letter-spacing:.06em;margin-bottom:5px}
+.prod-nome{font-size:13px;font-weight:500;color:var(--marrom);margin-bottom:6px;line-height:1.4}
+.prod-desc-short{font-size:12px;color:var(--texto-leve);line-height:1.6;flex:1;margin-bottom:12px}
+.prod-cores{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
+.cor-dot{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(0,0,0,.1);cursor:pointer;transition:transform .15s}
+.cor-dot:hover{transform:scale(1.3)}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.preco-box{}
+.preco-de{font-size:11px;color:var(--texto-leve);text-decoration:line-through}
+.preco-atual{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--marrom);line-height:1}
+.btn-add{background:var(--rosa);border:none;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--marrom);flex-shrink:0}
+.btn-add:hover{background:var(--marrom);color:white;transform:scale(1.1)}
+.prod-lojas{display:flex;gap:4px;margin-top:10px;flex-wrap:wrap}
+.loja-pill{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:500;letter-spacing:.03em}
+
+/* VIEW SWITCHER */
+.view-switcher{display:flex;gap:6px;margin-left:auto}
+.view-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--creme-esc);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s}
+.view-btn.active{background:var(--marrom);border-color:var(--marrom);color:white;filter:grayscale(0)}
+
+/* BANNER */
+.banner-kit{background:var(--rosa);padding:0;overflow:hidden}
+.banner-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+.banner-txt{padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.banner-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--rosa-esc);margin-bottom:16px}
+.banner-h{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:var(--marrom);line-height:1.2;margin-bottom:16px}
+.banner-h em{font-style:italic}
+.banner-p{font-size:14px;color:var(--marrom-cl);line-height:1.8;margin-bottom:28px;max-width:360px}
+.banner-vis{background:var(--rosa-med);display:flex;align-items:center;justify-content:center;font-size:110px;position:relative;overflow:hidden}
+.banner-vis::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.18);top:-80px;right:-80px}
+
+/* DEPOIMENTOS */
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.dep-card{background:var(--creme);border-radius:16px;padding:28px;border:1px solid var(--creme-esc);transition:box-shadow .25s}
+.dep-card:hover{box-shadow:0 8px 24px var(--sombra)}
+.dep-stars{color:var(--rosa-esc);font-size:13px;letter-spacing:2px;margin-bottom:14px}
+.dep-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;color:var(--marrom);line-height:1.7;margin-bottom:18px}
+.dep-autor{display:flex;align-items:center;gap:12px}
+.dep-avatar{width:38px;height:38px;border-radius:50%;background:var(--rosa);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.dep-nome{font-size:13px;font-weight:500;color:var(--marrom)}
+.dep-info{font-size:11px;color:var(--texto-leve);margin-top:2px}
+
+/* ════════════════════════════════════════
+   LOJAS PAGE
+════════════════════════════════════════ */
+.lojas-hero{background:var(--marrom);padding:72px 28px;text-align:center}
+.lojas-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,52px);font-weight:300;color:var(--rosa);margin-bottom:14px}
+.lojas-hero h1 em{font-style:italic;color:var(--rosa-med)}
+.lojas-hero p{font-size:14px;color:rgba(245,213,204,.65);max-width:480px;margin:0 auto;line-height:1.8}
+.lojas-plataformas{padding:64px 28px;background:var(--branco)}
+.plat-section{margin-bottom:56px}
+.plat-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:16px;border-bottom:1.5px solid var(--creme-esc)}
+.plat-logo{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex-shrink:0}
+.plat-nome{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--marrom)}
+.plat-count{font-size:12px;color:var(--texto-leve);margin-top:2px}
+.loja-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.loja-card{background:var(--creme);border-radius:18px;padding:28px;border:1.5px solid transparent;transition:all .25s;position:relative;overflow:hidden}
+.loja-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:18px 18px 0 0}
+.loja-card:hover{border-color:var(--rosa-med);transform:translateY(-4px);box-shadow:0 14px 36px var(--sombra);background:var(--branco)}
+.loja-card-icon{font-size:38px;margin-bottom:14px}
+.loja-card-nome{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--marrom);margin-bottom:4px}
+.loja-card-plat{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--texto-leve);margin-bottom:16px}
+.loja-card-desc{font-size:13px;color:var(--texto-leve);line-height:1.7;margin-bottom:18px}
+.btn-visitar{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:30px;border:none;font-size:12px;font-family:'DM Sans',sans-serif;letter-spacing:.05em;cursor:pointer;font-weight:500;text-decoration:none;transition:all .2s;width:100%}
+.btn-visitar:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* CUPONS */
+.cupons-section{padding:64px 28px;background:var(--creme)}
+.cupons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.cupon-card{background:var(--branco);border-radius:18px;padding:24px;border:1px solid var(--creme-esc);display:flex;gap:18px;align-items:center;transition:all .25s;position:relative;overflow:hidden}
+.cupon-card:hover{box-shadow:0 10px 28px var(--sombra);transform:translateY(-3px)}
+.cupon-card::after{content:'';position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:var(--creme)}
+.cupon-icon{font-size:32px;flex-shrink:0}
+.cupon-info{}
+.cupon-codigo{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:var(--marrom);letter-spacing:.1em;background:var(--creme);padding:4px 12px;border-radius:8px;display:inline-block;margin-bottom:6px;cursor:pointer;transition:all .2s}
+.cupon-codigo:hover{background:var(--rosa);color:var(--marrom)}
+.cupon-desc{font-size:13px;color:var(--texto-leve)}
+.cupon-loja{font-size:11px;color:var(--rosa-esc);margin-top:4px;font-weight:500}
+
+/* ════════════════════════════════════════
+   CATALOGO PAGE
+════════════════════════════════════════ */
+.catalogo-layout{display:grid;grid-template-columns:260px 1fr;gap:28px;max-width:1280px;margin:0 auto;padding:40px 28px}
+.filtros-sidebar{background:var(--branco);border-radius:18px;padding:24px;border:1px solid var(--creme-esc);height:fit-content;position:sticky;top:88px}
+.filtro-titulo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--marrom);margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--creme-esc)}
+.filtro-grupo{margin-bottom:24px}
+.filtro-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--texto-leve);font-weight:500;margin-bottom:12px;display:block}
+.filtro-opcoes{display:flex;flex-direction:column;gap:8px}
+.filtro-check{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;color:var(--texto);transition:color .15s}
+.filtro-check:hover{color:var(--marrom)}
+.filtro-check input{accent-color:var(--rosa-esc);width:14px;height:14px;cursor:pointer}
+.filtro-check-label{flex:1}
+.filtro-check-count{font-size:11px;color:var(--texto-leve);background:var(--creme);padding:1px 7px;border-radius:20px}
+.preco-slider{padding:8px 0}
+.preco-range{width:100%;accent-color:var(--rosa-esc);cursor:pointer}
+.preco-vals{display:flex;justify-content:space-between;font-size:12px;color:var(--texto-leve);margin-top:8px}
+.cores-filtro{display:flex;gap:8px;flex-wrap:wrap}
+.cor-filtro{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .2s}
+.cor-filtro.active,.cor-filtro:hover{border-color:var(--marrom);transform:scale(1.2)}
+.btn-limpar{width:100%;margin-top:8px;padding:9px;border-radius:30px;border:1px solid var(--creme-esc);background:transparent;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--texto-leve);transition:all .2s}
+.btn-limpar:hover{background:var(--creme);color:var(--marrom)}
+.catalogo-main{}
+.catalogo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.catalogo-info{font-size:13px;color:var(--texto-leve)}
+.catalogo-info strong{color:var(--marrom)}
+.sort-select{padding:8px 14px;border-radius:30px;border:1px solid var(--creme-esc);background:var(--branco);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--texto);cursor:pointer;outline:none}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* SKU / detalhe badge */
+.sku-chip{background:var(--creme);border:1px solid var(--creme-esc);border-radius:8px;padding:2px 8px;font-size:10px;color:var(--texto-leve);letter-spacing:.06em;display:inline-block;margin-bottom:6px}
+
+/* ════════════════════════════════════════
+   CONTATO PAGE
+════════════════════════════════════════ */
+.contato-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:80vh}
+.contato-info{background:var(--marrom);padding:72px 60px;display:flex;flex-direction:column;justify-content:center}
+.contato-info h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--rosa);line-height:1.2;margin-bottom:16px}
+.contato-info h2 em{font-style:italic;color:var(--rosa-med)}
+.contato-info p{font-size:14px;color:rgba(245,213,204,.65);line-height:1.8;margin-bottom:36px;max-width:340px}
+.contato-itens{display:flex;flex-direction:column;gap:16px}
+.contato-item{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.07);padding:16px 20px;border-radius:14px;border:1px solid rgba(245,213,204,.12)}
+.contato-item-icon{font-size:20px;flex-shrink:0}
+.contato-item-title{font-size:13px;font-weight:500;color:var(--rosa);margin-bottom:3px}
+.contato-item-val{font-size:12px;color:rgba(245,213,204,.6)}
+.contato-form-wrap{background:var(--creme);padding:72px 60px;display:flex;flex-direction:column;justify-content:center}
+.contato-form-wrap h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--marrom);margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group label{font-size:12px;font-weight:500;color:var(--marrom-cl);letter-spacing:.04em}
+.form-group input,.form-group select,.form-group textarea{padding:12px 16px;border-radius:12px;border:1.5px solid var(--creme-esc);background:var(--branco);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--texto);outline:none;transition:border-color .2s;width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--rosa-med)}
+.form-group textarea{resize:vertical;min-height:110px;line-height:1.6}
+.form-success{background:var(--creme-esc);border:1px solid var(--rosa-med);border-radius:14px;padding:20px;text-align:center;font-size:14px;color:var(--marrom);display:none}
+.form-success.show{display:block}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{background:#1E120E;color:rgba(245,213,204,.65);padding:56px 28px 28px}
+.footer-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
+.footer-brand .logo-main{color:var(--rosa)}
+.footer-brand .logo-sub{color:var(--rosa-esc)}
+.footer-brand p{font-size:13px;line-height:1.8;margin-top:14px;color:rgba(245,213,204,.5);max-width:240px}
+.footer-social{display:flex;gap:8px;margin-top:18px}
+.social-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(245,213,204,.2);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--rosa)}
+.social-btn:hover{background:var(--rosa-esc);border-color:var(--rosa-esc)}
+.footer-col h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rosa);font-weight:400;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col ul a{font-size:13px;color:rgba(245,213,204,.55);text-decoration:none;transition:color .2s;cursor:pointer}
+.footer-col ul a:hover{color:var(--rosa)}
+.footer-bottom{max-width:1280px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(245,213,204,.1);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(245,213,204,.3);flex-wrap:wrap;gap:10px}
+
+/* WPP FLOAT */
+.wpp-float{position:fixed;bottom:26px;right:26px;z-index:999;background:#25D366;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);cursor:pointer;text-decoration:none;font-size:24px;transition:all .25s;animation:pulse-w 2.5s infinite}
+.wpp-float:hover{transform:scale(1.1)}
+@keyframes pulse-w{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)}50%{box-shadow:0 6px 34px rgba(37,211,102,.65)}}
+
+/* NEWSLETTER */
+.newsletter{background:var(--rosa);padding:56px 28px}
+.nl-inner{max-width:500px;margin:0 auto;text-align:center}
+.nl-inner h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--marrom);margin-bottom:10px}
+.nl-inner h2 em{font-style:italic}
+.nl-inner p{font-size:14px;color:var(--marrom-cl);margin-bottom:24px;line-height:1.7}
+.nl-form{display:flex;gap:10px;max-width:400px;margin:0 auto}
+.nl-form input{flex:1;padding:12px 18px;border-radius:40px;border:1px solid rgba(92,61,46,.18);background:rgba(255,255,255,.7);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--marrom);outline:none}
+.nl-form input:focus{border-color:var(--rosa-esc);background:white}
+
+/* UTILS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.tag-promo{background:#FFF0ED;color:#C97A6A;font-size:10px;padding:2px 8px;border-radius:8px;font-weight:500}
+.empty-state{text-align:center;padding:60px;color:var(--texto-leve)}
+.empty-state .icon{font-size:48px;margin-bottom:14px}
+.empty-state p{font-size:14px;line-height:1.7}
+
+/* CORES MAP */
+.cor-Rosa{background:#F5C5C5}
+.cor-Azul{background:#C5D5F5}
+.cor-Amarelo{background:#F5EEC5}
+.cor-Verde{background:#C5F5D5}
+.cor-Branco{background:#FFFFFF;border:1.5px solid #ddd}
+.cor-Bege{background:#F5ECD5}
+.cor-Lilás,.cor-Lilas{background:#E5C5F5}
+.cor-Cinza{background:#D5D5D5}
+.cor-Estampado{background:linear-gradient(135deg,#F5C5C5 25%,#C5D5F5 25% 50%,#F5EEC5 50% 75%,#C5F5D5 75%);border-width:0}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .view-grid .produtos-container{grid-template-columns:repeat(3,1fr)}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .difs-inner{grid-template-columns:repeat(2,1fr)}
+  .catalogo-layout{grid-template-columns:1fr;padding:24px}
+  .filtros-sidebar{position:static}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-visual{min-height:280px}
+  .hero-content{padding:44px 24px}
+  .banner-inner{grid-template-columns:1fr}
+  .banner-vis{min-height:180px}
+  .dep-grid{grid-template-columns:1fr}
+  .contato-layout{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .nl-form{flex-direction:column}
+  .form-row{grid-template-columns:1fr}
+  .difs-inner{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  📦 Frete para todo Brasil &nbsp;|&nbsp; 💳 10x sem juros &nbsp;|&nbsp; 📱 <a href="tel:16982085091">(16) 98208-5091</a> &nbsp;|&nbsp; ✉️ <a href="mailto:atendimento@mefenxovais.com.br">atendimento@mefenxovais.com.br</a>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('home')">
+      <span class="logo-main">Mãe &amp; Filho</span>
+      <span class="logo-sub">Enxovais</span>
+    </div>
+    <nav>
+      <button class="nav-btn active" onclick="showPage('home')">Início</button>
+      <button class="nav-btn" onclick="showPage('catalogo')">Catálogo</button>
+      <button class="nav-btn" onclick="showPage('lojas')">Nossas Lojas</button>
+      <button class="nav-btn" onclick="showPage('contato')">Contato</button>
+    </nav>
+    <div class="header-right">
+      <div class="icon-btn cart-badge" title="Carrinho">
+        🛒<span class="badge-count" id="cart-count">0</span>
+      </div>
+      <a href="https://wa.me/5516982085091" class="btn-wpp" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════ HOME ════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Enxoval para bebê</p>
+      <h1 class="hero-title">O enxoval dos <em>sonhos</em>,<br>ao seu alcance</h1>
+      <p class="hero-desc">Produtos pensados com amor para o momento mais especial da sua vida. Qualidade, conforto e beleza para seu bebê.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('catalogo')">Ver catálogo completo</button>
+        <button class="btn-outline" onclick="showPage('lojas')">Nossas lojas</button>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-num">5.000+</span><span class="trust-label">Famílias atendidas</span></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><span class="trust-num">⭐ 4.9</span><span class="trust-label">Avaliação média</span></div>
+        <div class="trust-div"></div>
+        <div class="trust-item"><span class="trust-num">8 lojas</span><span class="trust-label">No Brasil inteiro</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-deco">
+        <div class="deco-c dc1"></div><div class="deco-c dc2"></div><div class="deco-c dc3"></div>
+      </div>
+      <div class="hero-big-icon">🍼</div>
+      <div class="hero-card">
+        <span class="tag">Mais vendido</span>
+        <h4>Kit Enxoval Safari 7 Peças</h4>
+        <div class="price"><span style="font-size:12px;color:var(--texto-leve)">a partir de</span><br><strong>R$ 189,90</strong></div>
+      </div>
+      <div class="hero-badge"><strong>10x</strong>sem juros<br>no cartão</div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <div class="difs">
+    <div class="difs-inner">
+      <div class="dif"><span class="dif-icon">🚚</span><div><div class="dif-title">Frete para todo Brasil</div><div class="dif-desc">Mandaê, Loggi, JadLog, FedEx e SEDEX</div></div></div>
+      <div class="dif"><span class="dif-icon">💳</span><div><div class="dif-title">10x sem juros</div><div class="dif-desc">Parcelamento fácil no cartão de crédito</div></div></div>
+      <div class="dif"><span class="dif-icon">🔒</span><div><div class="dif-title">Compra 100% segura</div><div class="dif-desc">Pague via Pix, cartão ou boleto</div></div></div>
+      <div class="dif"><span class="dif-icon">💬</span><div><div class="dif-title">Atendimento humano</div><div class="dif-desc">WhatsApp (16) 98208-5091</div></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORIAS -->
+  <section class="section" style="background:var(--branco)">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Navegue por</p>
+        <h2 class="section-title">Nossas <em>categorias</em></h2>
+      </div>
+      <div class="cat-grid" id="home-cats"></div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS DESTAQUE -->
+  <section class="section" style="background:var(--creme)" id="home-prods-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Seleção especial</p>
+        <h2 class="section-title">Produtos em <em>destaque</em></h2>
+      </div>
+      <div class="prod-tabs">
+        <button class="tab active" onclick="filterHome('destaque',this)">Destaques</button>
+        <button class="tab" onclick="filterHome('novo',this)">Lançamentos</button>
+        <button class="tab" onclick="filterHome('promocao',this)">Promoções</button>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-bottom:20px">
+        <button class="view-btn active" id="vbg" onclick="setHomeView('grid',this)" title="Grade">⊞</button>
+        <button class="view-btn" id="vbl" onclick="setHomeView('lookbook',this)" title="Lookbook">🖼</button>
+        <button class="view-btn" id="vbli" onclick="setHomeView('list',this)" title="Lista">☰</button>
+      </div>
+      <div id="home-prods-wrap" class="view-grid">
+        <div class="produtos-container" id="home-prods"></div>
+      </div>
+      <div style="text-align:center;margin-top:44px">
+        <button class="btn-outline" onclick="showPage('catalogo')">Ver todos os produtos →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER KITS -->
+  <div class="banner-kit">
+    <div class="banner-inner">
+      <div class="banner-txt">
+        <p class="banner-eyebrow">Exclusivo</p>
+        <h2 class="banner-h">Monte seu <em>enxoval</em><br>dos sonhos</h2>
+        <p class="banner-p">Personalize cada detalhe. Escolha temas, cores e quantidades — entregamos tudo organizado com carinho.</p>
+        <a href="https://wa.me/5516982085091?text=Olá! Gostaria de montar o enxoval do meu bebê" class="btn-primary" target="_blank">Falar com consultora 💬</a>
+      </div>
+      <div class="banner-vis">🎀</div>
+    </div>
+  </div>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section" style="background:var(--branco)">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Quem ama, indica</p>
+        <h2 class="section-title">O que as <em>mamães</em> dizem</h2>
+      </div>
+      <div class="dep-grid">
+        <div class="dep-card"><div class="dep-stars">★★★★★</div><p class="dep-text">"Produtos lindos e de qualidade incrível. O kit chegou antes do prazo e a embalagem estava impecável!"</p><div class="dep-autor"><div class="dep-avatar">👩</div><div><div class="dep-nome">Ana Paula M.</div><div class="dep-info">Mamãe da Isabela • São Paulo, SP</div></div></div></div>
+        <div class="dep-card"><div class="dep-stars">★★★★★</div><p class="dep-text">"Atendimento maravilhoso! A consultora me ajudou a montar o enxoval completo dentro do meu orçamento."</p><div class="dep-autor"><div class="dep-avatar">👩‍🦱</div><div><div class="dep-nome">Fernanda R.</div><div class="dep-info">Mamãe do Miguel • Campinas, SP</div></div></div></div>
+        <div class="dep-card"><div class="dep-stars">★★★★★</div><p class="dep-text">"Comprei o mosquiteiro portátil e ele é perfeito! Material excelente. Já indiquei para três amigas."</p><div class="dep-autor"><div class="dep-avatar">👩‍🦰</div><div><div class="dep-nome">Juliana T.</div><div class="dep-info">Mamãe do Heitor • Ribeirão Preto, SP</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="newsletter">
+    <div class="nl-inner">
+      <h2>Novidades em <em>primeira mão</em></h2>
+      <p>Cadastre seu e-mail e receba lançamentos, promoções e dicas de enxoval.</p>
+      <div class="nl-form">
+        <input type="email" placeholder="Seu melhor e-mail">
+        <button class="btn-primary btn-sm">Quero receber</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ LOJAS ════ -->
+<div id="page-lojas" class="page">
+  <div class="lojas-hero">
+    <p class="eyebrow" style="color:var(--rosa-med)">Onde nos encontrar</p>
+    <h1>Estamos em <em>8 lojas</em><br>esperando por você</h1>
+    <p>Compre com segurança nas maiores plataformas do Brasil. Todas as lojas são oficiais e gerenciadas pela nossa equipe.</p>
+  </div>
+
+  <div class="lojas-plataformas">
+    <div class="section-inner">
+
+      <!-- SHOPEE -->
+      <div class="plat-section">
+        <div class="plat-header">
+          <div class="plat-logo" style="background:#FFF0ED;color:#EE4D2D;font-size:14px;font-weight:700">🛍</div>
+          <div><div class="plat-nome">Shopee</div><div class="plat-count">4 lojas ativas</div></div>
+        </div>
+        <div class="loja-cards" id="loja-shopee"></div>
+      </div>
+
+      <!-- MERCADO LIVRE -->
+      <div class="plat-section">
+        <div class="plat-header">
+          <div class="plat-logo" style="background:#FFF9C4;color:#333;font-size:14px;font-weight:700">ML</div>
+          <div><div class="plat-nome">Mercado Livre</div><div class="plat-count">2 lojas ativas</div></div>
+        </div>
+        <div class="loja-cards" id="loja-ml"></div>
+      </div>
+
+      <!-- OUTRAS -->
+      <div class="plat-section">
+        <div class="plat-header">
+          <div class="plat-logo" style="background:#1E120E;color:white;font-size:12px;font-weight:700">▶</div>
+          <div><div class="plat-nome">TikTok Shop & Kwai Shop</div><div class="plat-count">2 lojas ativas</div></div>
+        </div>
+        <div class="loja-cards" id="loja-outros"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CUPONS -->
+  <div class="cupons-section">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="eyebrow">Economize mais</p>
+        <h2 class="section-title">Cupons <em>exclusivos</em></h2>
+        <p class="section-desc">Clique no código para copiar e use na hora de finalizar seu pedido.</p>
+      </div>
+      <div class="cupons-grid" id="cupons-container"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CATÁLOGO ════ -->
+<div id="page-catalogo" class="page">
+  <div style="background:var(--marrom);padding:48px 28px;text-align:center">
+    <p class="eyebrow" style="color:var(--rosa-med)">Explore nossos produtos</p>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,46px);font-weight:300;color:var(--rosa);line-height:1.2">Catálogo <em style="font-style:italic;color:var(--rosa-med)">completo</em></h1>
+  </div>
+  <div class="catalogo-layout">
+    <!-- SIDEBAR -->
+    <aside class="filtros-sidebar">
+      <div class="filtro-titulo">Filtros</div>
+
+      <div class="filtro-grupo">
+        <span class="filtro-label">Categoria</span>
+        <div class="filtro-opcoes" id="filtro-cats"></div>
+      </div>
+
+      <div class="filtro-grupo">
+        <span class="filtro-label">Preço</span>
+        <div class="preco-slider">
+          <input type="range" class="preco-range" id="preco-max" min="0" max="400" value="400" step="10" oninput="updatePreco(this.value)">
+          <div class="preco-vals"><span>R$ 0</span><span id="preco-val-max">R$ 400+</span></div>
+        </div>
+      </div>
+
+      <div class="filtro-grupo">
+        <span class="filtro-label">Cor</span>
+        <div class="cores-filtro" id="filtro-cores"></div>
+      </div>
+
+      <div class="filtro-grupo">
+        <span class="filtro-label">Tamanho</span>
+        <div class="filtro-opcoes" id="filtro-tamanhos"></div>
+      </div>
+
+      <div class="filtro-grupo">
+        <span class="filtro-label">Loja</span>
+        <div class="filtro-opcoes" id="filtro-lojas"></div>
+      </div>
+
+      <button class="btn-limpar" onclick="limparFiltros()">↺ Limpar filtros</button>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="catalogo-main">
+      <div class="catalogo-top">
+        <div class="catalogo-info">Exibindo <strong id="prod-count">0</strong> produtos</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <select class="sort-select" id="sort-select" onchange="renderCatalogo()">
+            <option value="destaque">Destaques primeiro</option>
+            <option value="preco-asc">Menor preço</option>
+            <option value="preco-desc">Maior preço</option>
+            <option value="novo">Lançamentos</option>
+            <option value="nome">Nome A–Z</option>
+          </select>
+          <div style="display:flex;gap:6px">
+            <button class="view-btn active" onclick="setCatView('grid',this)" title="Grade">⊞</button>
+            <button class="view-btn" onclick="setCatView('list',this)" title="Lista">☰</button>
+          </div>
+        </div>
+      </div>
+      <div id="catalogo-container" class="prod-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CONTATO ════ -->
+<div id="page-contato" class="page">
+  <div class="contato-layout">
+    <div class="contato-info">
+      <h2>Fale com a <em>gente</em></h2>
+      <p>Estamos aqui para ajudar você a encontrar o enxoval perfeito para seu bebê. Resposta rápida garantida!</p>
+      <div class="contato-itens">
+        <div class="contato-item"><span class="contato-item-icon">📱</span><div><div class="contato-item-title">WhatsApp</div><div class="contato-item-val">(16) 98208-5091</div></div></div>
+        <div class="contato-item"><span class="contato-item-icon">✉️</span><div><div class="contato-item-title">E-mail</div><div class="contato-item-val">atendimento@mefenxovais.com.br</div></div></div>
+        <div class="contato-item"><span class="contato-item-icon">📍</span><div><div class="contato-item-title">Localização</div><div class="contato-item-val">Itápolis, SP — Brasil</div></div></div>
+        <div class="contato-item"><span class="contato-item-icon">⏰</span><div><div class="contato-item-title">Horário de atendimento</div><div class="contato-item-val">Segunda a Sexta: 9h às 18h</div></div></div>
+        <div class="contato-item"><span class="contato-item-icon">🔄</span><div><div class="contato-item-title">Trocas e devoluções</div><div class="contato-item-val">Prazo de 7 dias corridos</div></div></div>
+      </div>
+    </div>
+    <div class="contato-form-wrap">
+      <h3>Envie sua mensagem</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Nome completo</label><input type="text" placeholder="Seu nome" id="f-nome"></div>
+        <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com" id="f-email"></div>
+      </div>
+      <div class="form-group"><label>Telefone / WhatsApp</label><input type="tel" placeholder="(00) 00000-0000" id="f-tel"></div>
+      <div class="form-group">
+        <label>Assunto</label>
+        <select id="f-assunto">
+          <option value="">Selecione...</option>
+          <option>Dúvida sobre produto</option>
+          <option>Pedido / Rastreamento</option>
+          <option>Troca ou devolução</option>
+          <option>Montar enxoval personalizado</option>
+          <option>Outro assunto</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Mensagem</label><textarea id="f-msg" placeholder="Escreva sua mensagem..."></textarea></div>
+      <button class="btn-primary" style="width:100%" onclick="enviarContato()">Enviar mensagem →</button>
+      <div class="form-success" id="form-ok">✅ Mensagem enviada! Entraremos em contato em breve.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER (global) -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><span class="logo-main">Mãe &amp; Filho</span><span class="logo-sub">Enxovais</span></div>
+      <p>Levando o enxoval dos sonhos para famílias em todo o Brasil com amor, qualidade e preço justo.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">🎵</a>
+        <a href="https://wa.me/5516982085091" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-col"><h5>Produtos</h5><ul><li><a onclick="showPage('catalogo')">Kits Enxoval</a></li><li><a onclick="showPage('catalogo')">Mosquiteiros</a></li><li><a onclick="showPage('catalogo')">Mantas e Cobertores</a></li><li><a onclick="showPage('catalogo')">Roupas de Cama</a></li><li><a onclick="showPage('catalogo')">Acessórios</a></li></ul></div>
+    <div class="footer-col"><h5>Atendimento</h5><ul><li><a onclick="showPage('contato')">Fale conosco</a></li><li><a>Política de frete</a></li><li><a>Trocas e devoluções</a></li><li><a>Rastrear pedido</a></li><li><a>Perguntas frequentes</a></li></ul></div>
+    <div class="footer-col"><h5>Contato</h5><ul><li><a href="tel:16982085091">📞 (16) 98208-5091</a></li><li><a href="mailto:atendimento@mefenxovais.com.br">✉️ atendimento@...</a></li><li><a>📍 Itápolis, SP</a></li><li><a>⏰ Seg–Sex 9h–18h</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mãe e Filho Enxovais. Todos os direitos reservados.</span>
+    <span>Feito com 💕 para as mamães do Brasil</span>
+  </div>
+</footer>
+
+<a class="wpp-float" href="https://wa.me/5516982085091?text=Olá! Vim pelo site e gostaria de mais informações." target="_blank">💬</a>
+
+<script>
+// ════════════════════════════════
+// DATA — carregado do JSON externo
+// ════════════════════════════════
+let DATA = null;
+let cartCount = 0;
+
+// Estado filtros
+let filtroState = {
+  cats: [],
+  precoMax: 400,
+  cores: [],
+  tamanhos: [],
+  lojas: []
+};
+
+let homeView = 'grid';
+let catView = 'grid';
+let homeFilter = 'destaque';
+
+async function loadData() {
+  try {
+    const r = await fetch('produtos.json');
+    DATA = await r.json();
+  } catch(e) {
+    // fallback inline
+    DATA = INLINE_DATA;
+  }
+  init();
+}
+
+// ════════════════════════════════
+// NAV
+// ════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  const map = {home:0, catalogo:1, lojas:2, contato:3};
+  if(btns[map[id]]) btns[map[id]].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if(id === 'lojas') renderLojas();
+  if(id === 'catalogo') renderCatalogo();
+}
+
+// ════════════════════════════════
+// INIT
+// ════════════════════════════════
+function init() {
+  renderHomeCats();
+  renderHomeProds();
+  buildFiltros();
+}
+
+// ════════════════════════════════
+// HOME CATEGORIAS
+// ════════════════════════════════
+function renderHomeCats() {
+  const el = document.getElementById('home-cats');
+  el.innerHTML = DATA.categorias.map(c => {
+    const count = DATA.produtos.filter(p => p.categoria === c.id).length;
+    return `<div class="cat-card" onclick="filterByCat('${c.id}')">
+      <span class="cat-icon-big">${c.icone}</span>
+      <div class="cat-name">${c.nome}</div>
+      <div class="cat-count">${count} produtos</div>
+    </div>`;
+  }).join('');
+}
+
+function filterByCat(catId) {
+  showPage('catalogo');
+  filtroState.cats = [catId];
+  document.querySelectorAll('#filtro-cats input').forEach(cb => {
+    cb.checked = cb.value === catId;
+  });
+  renderCatalogo();
+}
+
+// ════════════════════════════════
+// HOME PRODUTOS
+// ════════════════════════════════
+function filterHome(tipo, btn) {
+  homeFilter = tipo;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderHomeProds();
+}
+
+function setHomeView(view, btn) {
+  homeView = view;
+  document.querySelectorAll('#home-prods-wrap').forEach(w => {
+    w.className = 'view-' + view;
+  });
+  document.querySelectorAll('#vbg,#vbl,#vbli').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function renderHomeProds() {
+  let prods = DATA.produtos.filter(p => p[homeFilter] === true);
+  if(prods.length === 0) prods = DATA.produtos.slice(0, 8);
+  const el = document.getElementById('home-prods');
+  el.innerHTML = prods.slice(0,8).map(p => prodCard(p, homeView)).join('');
+}
+
+// ════════════════════════════════
+// PRODUCT CARD
+// ════════════════════════════════
+const bgMap = {kit:'',mos:'bg-mos',cam:'bg-cam',man:'bg-man',ban:'bg-ban',rou:'bg-rou',ace:'bg-ace',dec:'bg-dec'};
+const emojiMap = {kit:'🧸',mos:'🦟',cam:'🛏️',man:'🌙',ban:'🛁',rou:'👕',ace:'🎀',dec:'✨'};
+const coreHex = {'Rosa':'#F5C5C5','Azul':'#C5D5F5','Amarelo':'#F5EEC5','Verde':'#C5F5D5','Branco':'#FFFFFF','Bege':'#F5ECD5','Lilás':'#E5C5F5','Cinza':'#D5D5D5','Estampado':null};
+
+function prodCard(p, view) {
+  const cat = DATA.categorias.find(c => c.id === p.categoria);
+  const desc = p.preco_original ? `<span class="preco-de">R$ ${p.preco_original.toFixed(2).replace('.',',')}</span>` : '';
+  const badges = [];
+  if(p.destaque) badges.push('<span class="prod-badge badge-dest">Destaque</span>');
+  if(p.novo) badges.push('<span class="prod-badge badge-novo" style="top:40px">Novo</span>');
+  if(p.promocao && p.preco_original) {
+    const pct = Math.round((1 - p.preco / p.preco_original) * 100);
+    badges.push(`<span class="prod-badge badge-promo" style="top:${p.novo?'68px':'40px'}">-${pct}%</span>`);
+  }
+  const cores = p.cores.slice(0,5).map(cor => {
+    const hex = coreHex[cor];
+    if(!hex) return `<div class="cor-dot" style="background:linear-gradient(135deg,#F5C5C5,#C5D5F5)" title="${cor}"></div>`;
+    return `<div class="cor-dot" style="background:${hex}" title="${cor}"></div>`;
+  }).join('');
+  const lojaPills = p.lojas.slice(0,3).map(lid => {
+    const l = DATA.lojas.find(x => x.id === lid);
+    if(!l) return '';
+    const bg = l.plataforma === 'Shopee' ? '#FFF0ED' : l.plataforma === 'Mercado Livre' ? '#FFF9C4' : '#F0F0F0';
+    const tc = l.plataforma === 'Shopee' ? '#C0392B' : l.plataforma === 'Mercado Livre' ? '#666' : '#444';
+    return `<span class="loja-pill" style="background:${bg};color:${tc}">${l.plataforma}</span>`;
+  }).join('');
+
+  if(view === 'list') {
+    return `<div class="prod-card">
+      <div class="prod-img ${bgMap[p.categoria]}">${emojiMap[p.categoria]}${badges.join('')}<button class="prod-wishlist">♡</button></div>
+      <div class="prod-info">
+        <span class="sku-chip">${p.sku}</span>
+        <div class="prod-nome">${p.nome}</div>
+        <div class="prod-desc-short">${p.descricao_curta}</div>
+        <div class="prod-cores">${cores}</div>
+        <div class="prod-lojas">${lojaPills}</div>
+      </div>
+      <div class="prod-actions">
+        ${desc}<div class="preco-atual">R$ ${p.preco.toFixed(2).replace('.',',')}</div>
+        <button class="btn-primary btn-sm" onclick="event.stopPropagation();addCart()">+ Carrinho</button>
+        <a href="https://wa.me/5516982085091?text=Olá! Tenho interesse no produto ${encodeURIComponent(p.nome)} (SKU: ${p.sku})" target="_blank" class="btn-outline btn-sm" style="text-align:center">💬 Pedir</a>
+      </div>
+    </div>`;
+  }
+
+  return `<div class="prod-card" onclick="openProd('${p.sku}')">
+    <div class="prod-img ${bgMap[p.categoria]}">${emojiMap[p.categoria]}${badges.join('')}<button class="prod-wishlist" onclick="event.stopPropagation()">♡</button></div>
+    <div class="prod-info">
+      <span class="sku-chip">${p.sku}</span>
+      <div class="prod-nome">${p.nome}</div>
+      <div class="prod-desc-short">${p.descricao_curta}</div>
+      <div class="prod-cores">${cores}</div>
+      <div class="prod-lojas">${lojaPills}</div>
+      <div class="prod-footer">
+        <div class="preco-box">${desc}<div class="preco-atual">R$ ${p.preco.toFixed(2).replace('.',',')}</div></div>
+        <button class="btn-add" onclick="event.stopPropagation();addCart()" title="Adicionar">+</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addCart() {
+  cartCount++;
+  document.getElementById('cart-count').textContent = cartCount;
+}
+
+function openProd(sku) {
+  const p = DATA.produtos.find(x => x.sku === sku);
+  if(!p) return;
+  const lojaLinks = p.lojas.map(lid => {
+    const l = DATA.lojas.find(x => x.id === lid);
+    if(!l) return '';
+    return `<a href="${l.url}" target="_blank" class="btn-primary btn-sm" style="display:inline-flex;align-items:center;gap:6px">🛒 ${l.nome} <span style="font-size:10px;opacity:.7">(${l.plataforma})</span></a>`;
+  }).join('');
+  alert(`${p.nome}\nSKU: ${p.sku}\n\nAbra o catálogo para ver detalhes completos e links de compra.`);
+}
+
+// ════════════════════════════════
+// CATÁLOGO / FILTROS
+// ════════════════════════════════
+function buildFiltros() {
+  // Cats
+  const fcEl = document.getElementById('filtro-cats');
+  fcEl.innerHTML = DATA.categorias.map(c => {
+    const cnt = DATA.produtos.filter(p => p.categoria === c.id).length;
+    return `<label class="filtro-check">
+      <input type="checkbox" value="${c.id}" onchange="toggleFiltro('cats',this.value,this.checked)">
+      <span class="filtro-check-label">${c.icone} ${c.nome}</span>
+      <span class="filtro-check-count">${cnt}</span>
+    </label>`;
+  }).join('');
+
+  // Cores
+  const coresEl = document.getElementById('filtro-cores');
+  coresEl.innerHTML = DATA.cores.map(cor => {
+    const hex = coreHex[cor];
+    const style = hex ? `background:${hex}` : `background:linear-gradient(135deg,#F5C5C5,#C5D5F5,#F5EEC5)`;
+    return `<div class="cor-filtro" style="${style}" title="${cor}" onclick="toggleCorFiltro('${cor}',this)"></div>`;
+  }).join('');
+
+  // Tamanhos
+  const tamEl = document.getElementById('filtro-tamanhos');
+  tamEl.innerHTML = DATA.tamanhos.map(t => `<label class="filtro-check">
+    <input type="checkbox" value="${t}" onchange="toggleFiltro('tamanhos',this.value,this.checked)">
+    <span class="filtro-check-label">${t}</span>
+  </label>`).join('');
+
+  // Lojas
+  const lojasEl = document.getElementById('filtro-lojas');
+  const plats = [...new Set(DATA.lojas.map(l => l.plataforma))];
+  lojasEl.innerHTML = plats.map(p => `<label class="filtro-check">
+    <input type="checkbox" value="${p}" onchange="toggleFiltro('lojas',this.value,this.checked)">
+    <span class="filtro-check-label">${p}</span>
+  </label>`).join('');
+}
+
+function toggleFiltro(key, val, checked) {
+  if(checked) { if(!filtroState[key].includes(val)) filtroState[key].push(val); }
+  else { filtroState[key] = filtroState[key].filter(v => v !== val); }
+  renderCatalogo();
+}
+
+function toggleCorFiltro(cor, el) {
+  el.classList.toggle('active');
+  const idx = filtroState.cores.indexOf(cor);
+  if(idx === -1) filtroState.cores.push(cor);
+  else filtroState.cores.splice(idx,1);
+  renderCatalogo();
+}
+
+function updatePreco(val) {
+  filtroState.precoMax = parseInt(val);
+  document.getElementById('preco-val-max').textContent = val >= 400 ? 'R$ 400+' : `R$ ${val}`;
+  renderCatalogo();
+}
+
+function limparFiltros() {
+  filtroState = {cats:[],precoMax:400,cores:[],tamanhos:[],lojas:[]};
+  document.querySelectorAll('#filtros-sidebar input[type=checkbox]').forEach(c => c.checked = false);
+  document.querySelectorAll('.cor-filtro').forEach(c => c.classList.remove('active'));
+  document.getElementById('preco-max').value = 400;
+  document.getElementById('preco-val-max').textContent = 'R$ 400+';
+  buildFiltros();
+  renderCatalogo();
+}
+
+function setCatView(view, btn) {
+  catView = view;
+  const cont = document.getElementById('catalogo-container');
+  cont.className = view === 'list' ? 'catalogo-list' : 'prod-grid';
+  if(view === 'list') {
+    cont.style.cssText = 'display:flex;flex-direction:column;gap:14px';
+  } else {
+    cont.style.cssText = '';
+  }
+  document.querySelectorAll('.catalogo-main .view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalogo();
+}
+
+function renderCatalogo() {
+  if(!DATA) return;
+  let prods = [...DATA.produtos];
+
+  if(filtroState.cats.length > 0)
+    prods = prods.filter(p => filtroState.cats.includes(p.categoria));
+
+  if(filtroState.precoMax < 400)
+    prods = prods.filter(p => p.preco <= filtroState.precoMax);
+
+  if(filtroState.cores.length > 0)
+    prods = prods.filter(p => p.cores.some(c => filtroState.cores.includes(c)));
+
+  if(filtroState.tamanhos.length > 0)
+    prods = prods.filter(p => p.tamanhos.some(t => filtroState.tamanhos.includes(t)));
+
+  if(filtroState.lojas.length > 0)
+    prods = prods.filter(p => {
+      const plats = p.lojas.map(lid => { const l = DATA.lojas.find(x => x.id === lid); return l ? l.plataforma : ''; });
+      return plats.some(pl => filtroState.lojas.includes(pl));
+    });
+
+  const sort = document.getElementById('sort-select')?.value || 'destaque';
+  if(sort === 'preco-asc') prods.sort((a,b) => a.preco - b.preco);
+  else if(sort === 'preco-desc') prods.sort((a,b) => b.preco - a.preco);
+  else if(sort === 'novo') prods.sort((a,b) => b.novo - a.novo);
+  else if(sort === 'nome') prods.sort((a,b) => a.nome.localeCompare(b.nome));
+  else prods.sort((a,b) => b.destaque - a.destaque);
+
+  document.getElementById('prod-count').textContent = prods.length;
+  const el = document.getElementById('catalogo-container');
+
+  if(prods.length === 0) {
+    el.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="icon">🔍</div><p>Nenhum produto encontrado com os filtros selecionados.<br>Tente remover alguns filtros.</p><button class="btn-outline btn-sm" style="margin-top:16px" onclick="limparFiltros()">Limpar filtros</button></div>`;
+    return;
+  }
+
+  el.innerHTML = prods.map(p => prodCard(p, catView)).join('');
+}
+
+// ════════════════════════════════
+// LOJAS
+// ════════════════════════════════
+function renderLojas() {
+  if(!DATA) return;
+
+  const shopee = DATA.lojas.filter(l => l.plataforma === 'Shopee');
+  const ml = DATA.lojas.filter(l => l.plataforma === 'Mercado Livre');
+  const outros = DATA.lojas.filter(l => l.plataforma !== 'Shopee' && l.plataforma !== 'Mercado Livre');
+
+  document.getElementById('loja-shopee').innerHTML = shopee.map(l => lojaCard(l)).join('');
+  document.getElementById('loja-ml').innerHTML = ml.map(l => lojaCard(l)).join('');
+  document.getElementById('loja-outros').innerHTML = outros.map(l => lojaCard(l)).join('');
+  renderCupons();
+}
+
+function lojaCard(l) {
+  const prods = DATA.produtos.filter(p => p.lojas.includes(l.id)).length;
+  const icons = {Shopee:'🛍️','Mercado Livre':'🛒','TikTok Shop':'🎵','Kwai Shop':'📹'};
+  const bgs = {Shopee:'#EE4D2D','Mercado Livre':'#FFE600','TikTok Shop':'#010101','Kwai Shop':'#FF6600'};
+  const tcs = {Shopee:'white','Mercado Livre':'#333','TikTok Shop':'white','Kwai Shop':'white'};
+  const descs = {
+    shopee1:'Nossa loja principal na Shopee com a maior variedade de produtos.',
+    shopee2:'Segunda loja Shopee com produtos exclusivos e promoções especiais.',
+    shopee3:'Loja focada em enxovais completos e kits personalizados.',
+    shopee4:'Especializada em itens para bebê da marca Pinheiro Baby.',
+    ml1:'Loja oficial no Mercado Livre com entrega Full.',
+    ml2:'Loja Pinheiro com produtos selecionados no Mercado Livre.',
+    kwai:'Acompanhe nossos lives e compre pelo Kwai Shop.',
+    tiktok:'Promoções exclusivas nas nossas lives do TikTok Shop.'
+  };
+  return `<div class="loja-card" style="--loja-cor:${bgs[l.plataforma]}">
+    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:${bgs[l.plataforma]};border-radius:18px 18px 0 0"></div>
+    <div class="loja-card-icon">${icons[l.plataforma]||'🏪'}</div>
+    <div class="loja-card-nome">${l.nome}</div>
+    <div class="loja-card-plat">${l.plataforma} · ${prods} produtos</div>
+    <div class="loja-card-desc">${descs[l.id]||'Acesse nossa loja e confira os produtos disponíveis.'}</div>
+    <a href="${l.url}" target="_blank" class="btn-visitar" style="background:${bgs[l.plataforma]};color:${tcs[l.plataforma]}">Visitar loja →</a>
+  </div>`;
+}
+
+function renderCupons() {
+  const el = document.getElementById('cupons-container');
+  el.innerHTML = DATA.cupons.map(c => {
+    const loja = DATA.lojas.find(l => l.id === c.loja_id);
+    if(!loja) return '';
+    return `<div class="cupon-card">
+      <span class="cupon-icon">🎟️</span>
+      <div class="cupon-info">
+        <div class="cupon-codigo" onclick="copiarCupom('${c.codigo}',this)" title="Clique para copiar">${c.codigo}</div>
+        <div class="cupon-desc">${c.desconto}</div>
+        <div class="cupon-loja">${loja.nome} · ${loja.plataforma}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function copiarCupom(codigo, el) {
+  navigator.clipboard?.writeText(codigo);
+  const orig = el.textContent;
+  el.textContent = '✓ Copiado!';
+  el.style.background = '#C8F5D8';
+  setTimeout(() => { el.textContent = orig; el.style.background = ''; }, 2000);
+}
+
+// ════════════════════════════════
+// CONTATO
+// ════════════════════════════════
+function enviarContato() {
+  const nome = document.getElementById('f-nome').value;
+  const email = document.getElementById('f-email').value;
+  const msg = document.getElementById('f-msg').value;
+  if(!nome || !email || !msg) { alert('Por favor, preencha todos os campos obrigatórios.'); return; }
+  const text = `Olá! Meu nome é ${nome} (${email}). ${msg}`;
+  window.open('https://wa.me/5516982085091?text=' + encodeURIComponent(text), '_blank');
+  document.getElementById('form-ok').classList.add('show');
+}
+
+// ════════════════════════════════
+// INLINE DATA FALLBACK
+// (caso produtos.json não esteja disponível)
+// ════════════════════════════════
+const INLINE_DATA = {"meta":{"versao":"1.0","atualizado":"2025-01-01","moeda":"BRL"},"categorias":[{"id":"kit","nome":"Kits Enxoval","icone":"🧸","descricao":"Kits completos para o enxoval do bebê"},{"id":"mos","nome":"Mosquiteiros","icone":"🦟","descricao":"Proteção contra insetos para o bebê"},{"id":"cam","nome":"Roupas de Cama","icone":"🛏️","descricao":"Lençóis, fronhas e protetores"},{"id":"man","nome":"Mantas","icone":"🌙","descricao":"Mantas macias e quentinhas"},{"id":"ban","nome":"Banho & Higiene","icone":"🛁","descricao":"Toalhas, kits de banho e higiene"},{"id":"rou","nome":"Roupinhas","icone":"👕","descricao":"Bodies, macacões e saídas"},{"id":"ace","nome":"Acessórios","icone":"🎀","descricao":"Babadores, luvas, meias e mais"},{"id":"dec","nome":"Decoração","icone":"✨","descricao":"Mobile, quadros e guirlandas"}],"cores":["Rosa","Azul","Amarelo","Verde","Branco","Bege","Lilás","Cinza","Estampado"],"tamanhos":["RN","P","M","G","GG","Único"],"lojas":[{"id":"shopee1","nome":"Mãe & Filho Enxovais","plataforma":"Shopee","url":"https://shopee.com.br/maeefilhoenxovais","cor":"#EE4D2D"},{"id":"shopee2","nome":"Mãe & Filho - Loja 2","plataforma":"Shopee","url":"https://shopee.com.br/maeefilhoenxovaisloja2","cor":"#EE4D2D"},{"id":"shopee3","nome":"CeC Enxovais","plataforma":"Shopee","url":"https://shopee.com.br/cecenxovais","cor":"#EE4D2D"},{"id":"shopee4","nome":"Pinheiro Baby","plataforma":"Shopee","url":"https://shopee.com.br/pinheirobaby","cor":"#EE4D2D"},{"id":"ml1","nome":"Mãe e Filho","plataforma":"Mercado Livre","url":"https://www.mercadolivre.com.br/loja/mef-mae-e-filho","cor":"#FFE600"},{"id":"ml2","nome":"Pinheiro","plataforma":"Mercado Livre","url":"https://www.mercadolivre.com.br/loja/mef-mae-e-filho","cor":"#FFE600"},{"id":"kwai","nome":"Mãe & Filho","plataforma":"Kwai Shop","url":"https://kwai.com","cor":"#FF6600"},{"id":"tiktok","nome":"Mãe & Filho","plataforma":"TikTok Shop","url":"https://tiktok.com","cor":"#010101"}],"produtos":[{"sku":"MEF-KIT-001","nome":"Kit Enxoval Safari 7 Peças","categoria":"kit","descricao":"Kit completo com lençol, fronha, almofada, protetor, manta e 2 babadores.","descricao_curta":"Kit completo safari em algodão penteado","preco":189.90,"preco_original":249.90,"cores":["Bege","Rosa","Azul"],"tamanhos":["RN","P","M"],"destaque":true,"novo":false,"promocao":true,"estoque":45,"fotos":[],"tema":"Safari","lojas":["shopee1","ml1","tiktok"],"lookbook":true,"tags":["kit","presente","maternidade","safari"]},{"sku":"MEF-KIT-002","nome":"Kit Enxoval Ursinho Fofo 10 Peças","categoria":"kit","descricao":"Kit premium com manta, toalha, babador, luvas, meia, body, macacão, fronha, lençol e protetor.","descricao_curta":"Kit premium 10 peças ursinho, ideal para presente","preco":259.90,"preco_original":320.00,"cores":["Rosa","Azul","Amarelo"],"tamanhos":["RN","P"],"destaque":true,"novo":true,"promocao":true,"estoque":22,"fotos":[],"tema":"Ursinho","lojas":["shopee1","shopee2","ml1","tiktok"],"lookbook":true,"tags":["kit","premium","presente","ursinho"]},{"sku":"MEF-KIT-003","nome":"Kit Enxoval Estrelinhas 5 Peças","categoria":"kit","descricao":"Kit básico com lençol, fronha, manta soft e 2 babadores.","descricao_curta":"Kit básico estrelinhas, perfeito para o dia a dia","preco":129.90,"preco_original":159.90,"cores":["Amarelo","Rosa","Azul","Lilás"],"tamanhos":["RN","P","M"],"destaque":false,"novo":false,"promocao":true,"estoque":60,"fotos":[],"tema":"Estrelinhas","lojas":["shopee1","shopee3","ml2"],"lookbook":false,"tags":["kit","basico","estrelinhas"]},{"sku":"MEF-KIT-004","nome":"Kit Saída Maternidade Luxo 6 Peças","categoria":"kit","descricao":"Kit especial para saída da maternidade com body, calça, manta, touca, luva e meia.","descricao_curta":"Kit completo para a saída da maternidade","preco":219.90,"preco_original":279.90,"cores":["Rosa","Azul","Branco"],"tamanhos":["RN"],"destaque":true,"novo":true,"promocao":false,"estoque":18,"fotos":[],"tema":"Maternidade","lojas":["shopee1","shopee2","ml1","kwai"],"lookbook":true,"tags":["maternidade","saida","luxo","kit"]},{"sku":"MEF-MOS-001","nome":"Mosquiteiro Portátil Universal Tule","categoria":"mos","descricao":"Mosquiteiro portátil em tule fino com elástico regulável. Compatível com ninho redutor, carrinho e berço.","descricao_curta":"Mosquiteiro portátil universal com elástico","preco":79.90,"preco_original":null,"cores":["Branco","Rosa","Bege"],"tamanhos":["Único"],"destaque":true,"novo":false,"promocao":false,"estoque":120,"fotos":[],"tema":null,"lojas":["shopee1","shopee2","shopee3","ml1","ml2","tiktok"],"lookbook":false,"tags":["mosquiteiro","protecao","berco","carrinho"]},{"sku":"MEF-MOS-002","nome":"Mosquiteiro para Berço com Dossel","categoria":"mos","descricao":"Mosquiteiro com suporte e dossel para berço.","descricao_curta":"Mosquiteiro dossel com suporte para berço","preco":149.90,"preco_original":189.90,"cores":["Branco","Rosa","Bege","Cinza"],"tamanhos":["Único"],"destaque":true,"novo":true,"promocao":true,"estoque":35,"fotos":[],"tema":null,"lojas":["shopee1","shopee4","ml1","kwai"],"lookbook":true,"tags":["mosquiteiro","dossel","berco","decoracao"]},{"sku":"MEF-MOS-003","nome":"Mosquiteiro para Carrinho de Bebê","categoria":"mos","descricao":"Mosquiteiro para carrinho com abertura lateral e proteção UV.","descricao_curta":"Mosquiteiro para carrinho com proteção UV","preco":59.90,"preco_original":79.90,"cores":["Branco","Cinza"],"tamanhos":["Único"],"destaque":false,"novo":false,"promocao":true,"estoque":80,"fotos":[],"tema":null,"lojas":["shopee2","shopee3","ml2"],"lookbook":false,"tags":["mosquiteiro","carrinho","protecao","UV"]},{"sku":"MEF-CAM-001","nome":"Jogo de Cama Berço Safari 3 Peças","categoria":"cam","descricao":"Lençol com elástico, fronha e protetor de berço 100% algodão.","descricao_curta":"Jogo berço safari 3 peças 100% algodão","preco":119.90,"preco_original":149.90,"cores":["Bege","Rosa","Azul"],"tamanhos":["Único"],"destaque":false,"novo":false,"promocao":true,"estoque":55,"fotos":[],"tema":"Safari","lojas":["shopee1","shopee3","ml1"],"lookbook":false,"tags":["cama","berco","lencol","safari"]},{"sku":"MEF-CAM-002","nome":"Protetor de Berço Acolchoado Premium","categoria":"cam","descricao":"Protetor de berço em 4 partes com enchimento antialérgico.","descricao_curta":"Protetor berço 4 partes antialérgico premium","preco":89.90,"preco_original":null,"cores":["Rosa","Azul","Bege","Branco","Amarelo"],"tamanhos":["Único"],"destaque":false,"novo":false,"promocao":false,"estoque":70,"fotos":[],"tema":null,"lojas":["shopee1","shopee2","ml1","ml2"],"lookbook":false,"tags":["protetor","berco","acolchoado"]},{"sku":"MEF-MAN-001","nome":"Manta Soft Premium Estrelado","categoria":"man","descricao":"Manta em fleece ultra macio com estampa estrelada.","descricao_curta":"Manta fleece ultra macia com estrelinhas","preco":84.90,"preco_original":119.90,"cores":["Rosa","Azul","Amarelo","Lilás","Cinza"],"tamanhos":["P","M","G"],"destaque":true,"novo":false,"promocao":true,"estoque":90,"fotos":[],"tema":"Estrelinhas","lojas":["shopee1","shopee3","shopee4","ml1","tiktok","kwai"],"lookbook":true,"tags":["manta","soft","fleece","quentinha"]},{"sku":"MEF-MAN-002","nome":"Manta Tricot Luxo Ponto Trançado","categoria":"man","descricao":"Manta em tricot artesanal com ponto trançado. Ideal para presentes.","descricao_curta":"Manta tricot artesanal luxo, ideal para presente","preco":159.90,"preco_original":199.90,"cores":["Branco","Rosa","Bege","Cinza"],"tamanhos":["Único"],"destaque":true,"novo":true,"promocao":false,"estoque":20,"fotos":[],"tema":null,"lojas":["shopee1","ml1","tiktok"],"lookbook":true,"tags":["manta","tricot","luxo","presente"]},{"sku":"MEF-BAN-001","nome":"Kit Banho 5 Peças Ursinho","categoria":"ban","descricao":"Toalha de banho com capuz, 2 fraldas de boca, escova, pente e toalha de rosto.","descricao_curta":"Kit banho 5 peças com toalha capuz ursinho","preco":99.90,"preco_original":129.90,"cores":["Rosa","Azul","Amarelo","Bege"],"tamanhos":["Único"],"destaque":true,"novo":false,"promocao":true,"estoque":48,"fotos":[],"tema":"Ursinho","lojas":["shopee1","shopee2","ml1","kwai"],"lookbook":false,"tags":["banho","toalha","kit","ursinho"]},{"sku":"MEF-BAN-002","nome":"Toalha de Banho Felpuda com Capuz","categoria":"ban","descricao":"Toalha de banho 70x70cm em felpudo 100% algodão com capuz bordado.","descricao_curta":"Toalha felpuda 70x70 com capuz bordado","preco":49.90,"preco_original":null,"cores":["Rosa","Azul","Amarelo","Bege","Branco","Lilás"],"tamanhos":["Único"],"destaque":false,"novo":false,"promocao":false,"estoque":150,"fotos":[],"tema":null,"lojas":["shopee1","shopee2","shopee3","shopee4","ml1","ml2"],"lookbook":false,"tags":["toalha","banho","capuz","algodao"]},{"sku":"MEF-ROU-001","nome":"Body Manga Curta Estampado","categoria":"rou","descricao":"Body 100% algodão com estampa divertida. Fechamento em botões de pressão.","descricao_curta":"Body manga curta 100% algodão estampado","preco":29.90,"preco_original":null,"cores":["Rosa","Azul","Amarelo","Estampado"],"tamanhos":["RN","P","M","G"],"destaque":false,"novo":false,"promocao":false,"estoque":200,"fotos":[],"tema":null,"lojas":["shopee3","shopee4","ml2"],"lookbook":false,"tags":["body","roupa","algodao","manga-curta"]},{"sku":"MEF-ROU-002","nome":"Macacão Plush Inverno Ursinho","categoria":"rou","descricao":"Macacão em plush felpudo para o inverno com orelhinhas de ursinho no capuz.","descricao_curta":"Macacão plush inverno com capuz ursinho","preco":69.90,"preco_original":89.90,"cores":["Rosa","Bege","Cinza","Azul"],"tamanhos":["RN","P","M","G","GG"],"destaque":true,"novo":true,"promocao":true,"estoque":65,"fotos":[],"tema":"Ursinho","lojas":["shopee1","shopee2","ml1","tiktok","kwai"],"lookbook":true,"tags":["macacao","inverno","plush","ursinho"]},{"sku":"MEF-ACE-001","nome":"Kit 6 Babadores Estampados","categoria":"ace","descricao":"Kit com 6 babadores em tecido 100% algodão com fecho em velcro.","descricao_curta":"Kit 6 babadores algodão estampados com velcro","preco":39.90,"preco_original":59.90,"cores":["Estampado"],"tamanhos":["Único"],"destaque":false,"novo":false,"promocao":true,"estoque":180,"fotos":[],"tema":null,"lojas":["shopee2","shopee3","shopee4","ml2","kwai"],"lookbook":false,"tags":["babador","kit","algodao"]},{"sku":"MEF-ACE-002","nome":"Kit Touca + Luva + Meia RN","categoria":"ace","descricao":"Kit completo para recém-nascido com touca, luva e meia em algodão macio.","descricao_curta":"Kit touca luva meia recém-nascido algodão","preco":24.90,"preco_original":null,"cores":["Rosa","Azul","Branco","Amarelo"],"tamanhos":["RN"],"destaque":false,"novo":false,"promocao":false,"estoque":220,"fotos":[],"tema":null,"lojas":["shopee1","shopee2","shopee3","shopee4","ml1","ml2"],"lookbook":false,"tags":["touca","luva","meia","recem-nascido"]},{"sku":"MEF-DEC-001","nome":"Mobile Musical Carrossel Nuvens","categoria":"dec","descricao":"Mobile musical com carrossel giratório e 5 nuvens de pelúcia.","descricao_curta":"Mobile musical carrossel 5 nuvens pelúcia","preco":89.90,"preco_original":119.90,"cores":["Rosa","Azul","Bege"],"tamanhos":["Único"],"destaque":true,"novo":true,"promocao":true,"estoque":30,"fotos":[],"tema":"Nuvens","lojas":["shopee1","ml1","tiktok"],"lookbook":true,"tags":["mobile","musical","decoracao","carrossel"]},{"sku":"MEF-DEC-002","nome":"Guirlanda Pompom Quarto Bebê","categoria":"dec","descricao":"Guirlanda decorativa com pompons de lã em cores variadas. 2 metros.","descricao_curta":"Guirlanda pompom lã 2m decoração quarto bebê","preco":34.90,"preco_original":null,"cores":["Rosa","Azul","Bege","Estampado"],"tamanhos":["Único"],"destaque":false,"novo":false,"promocao":false,"estoque":95,"fotos":[],"tema":null,"lojas":["shopee4","ml2","kwai"],"lookbook":false,"tags":["guirlanda","pompom","decoracao","quarto"]}],"cupons":[{"loja_id":"shopee1","codigo":"MAEFIL10","desconto":"10% OFF na primeira compra","validade":"2025-12-31"},{"loja_id":"shopee2","codigo":"LOJA2BABY","desconto":"R$15 OFF acima de R$100","validade":"2025-12-31"},{"loja_id":"shopee3","codigo":"CECBEBE","desconto":"5% OFF em qualquer produto","validade":"2025-12-31"},{"loja_id":"shopee4","codigo":"PINHEIRO15","desconto":"15% OFF kits completos","validade":"2025-12-31"},{"loja_id":"ml1","codigo":"MLMEF10","desconto":"10% OFF comprando pelo app","validade":"2025-12-31"},{"loja_id":"tiktok","codigo":"TIKTOKBABY","desconto":"Frete grátis + 10% OFF","validade":"2025-12-31"},{"loja_id":"kwai","codigo":"KWAIBEBE","desconto":"R$20 OFF na primeira compra","validade":"2025-12-31"}]};
+
+loadData();
+</script>
+</body>
+</html>
