@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ============================================================
+       TÍTULO DA ABA DO NAVEGADOR
+       Troque "Seu Nome" pelo seu nome real
+  ============================================================ -->
+  <title>Seu Nome — Dev Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTE PRINCIPAL — pode trocar por outra do Google Fonts se quiser -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIÁVEIS DE COR — edite aqui para mudar o tema inteiro
+    ============================================================ */
+    :root {
+      --bg:         #0a0a0a;        /* fundo principal */
+      --bg-card:    #111111;        /* fundo dos cards */
+      --bg-card2:   #161616;        /* fundo alternativo de cards */
+      --border:     #222222;        /* cor das bordas */
+      --accent:     #e8ff00;        /* cor de destaque (amarelo-limão) */
+      --accent2:    #ff4d4d;        /* cor de destaque secundária */
+      --text:       #f0f0f0;        /* texto principal */
+      --text-muted: #666666;        /* texto secundário */
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Syne', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CURSOR CUSTOMIZADO ──────────────────────────────────── */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transition: transform .15s ease;
+    }
+    .cursor-ring {
+      width: 32px; height: 32px;
+      border: 1px solid rgba(232,255,0,.4);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transition: transform .35s ease, width .25s, height .25s, border-color .25s;
+    }
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: var(--accent);
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      mix-blend-mode: difference; /* efeito de inversão sobre o conteúdo */
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: .15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-number {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-family: var(--font-display);
+      font-size: clamp(200px, 40vw, 500px);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.04);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s .2s, transform .6s .2s;
+    }
+    /* ============================================================
+       NOME DO HERO — EDITE AQUI
+       Troque "FULANO" e "DE TAL" pelo seu primeiro e último nome
+    ============================================================ */
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 12vw, 180px);
+      line-height: .9;
+      letter-spacing: -.01em;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s .4s, transform .8s .4s;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-sub {
+      margin-top: 24px;
+      display: flex; align-items: center; gap: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s .7s, transform .6s .7s;
+    }
+    .hero-sub p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 400px;
+      line-height: 1.6;
+    }
+    /* ============================================================
+       CIDADE / LOCALIZAÇÃO — edite aqui
+    ============================================================ */
+    .hero-location {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .hero-scroll-hint {
+      position: absolute; right: 48px; bottom: 80px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: .65rem;
+      letter-spacing: .15em; color: var(--text-muted);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-hint::after {
+      content: '';
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+      animation: lineDown 1.5s ease-in-out infinite;
+    }
+    @keyframes lineDown {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    .loaded .hero-tag,
+    .loaded .hero-name,
+    .loaded .hero-sub { opacity: 1; transform: translateY(0); }
+
+    /* ── SEÇÃO GENÉRICA ──────────────────────────────────────── */
+    section { padding: 120px 48px; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: .9;
+      letter-spacing: -.01em;
+      margin-bottom: 64px;
+    }
+
+    /* ── REVEAL ANIMATION ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity .7s, transform .7s; }
+    .reveal-left.visible  { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity .7s, transform .7s; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── SOBRE ───────────────────────────────────────────────── */
+    #about { border-top: 1px solid var(--border); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    /* ============================================================
+       FOTO / AVATAR — coloque sua foto em "assets/foto.jpg"
+       ou troque o src da tag <img> na seção #about do HTML
+    ============================================================ */
+    .about-img-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .about-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(60%);
+      transition: filter .4s;
+    }
+    .about-img-wrap:hover img { filter: grayscale(0%); }
+    .about-img-frame {
+      position: absolute; inset: 12px;
+      border: 1px solid var(--accent);
+      pointer-events: none;
+      transform: translate(12px, 12px);
+    }
+    .about-content { display: flex; flex-direction: column; gap: 32px; }
+    /* ============================================================
+       TEXTO DE APRESENTAÇÃO — edite os parágrafos abaixo
+       no HTML, seção id="about"
+    ============================================================ */
+    .about-bio {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+    .about-bio strong { color: var(--text); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .skill-item {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s, border-color .2s;
+    }
+    .skill-item:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── PROJETOS — CARROSSEL ────────────────────────────────── */
+    #projects { border-top: 1px solid var(--border); }
+    .projects-tabs {
+      display: flex; gap: 0;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none; border: none;
+      padding: 16px 32px;
+      cursor: pointer;
+      position: relative;
+      transition: color .2s;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+    .tab-btn.active { color: var(--accent); }
+    .tab-btn.active::after { transform: scaleX(1); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* carrossel */
+    .carousel-wrap { position: relative; overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      gap: 24px;
+      transition: transform .5s cubic-bezier(.77,0,.175,1);
+    }
+    .carousel-nav {
+      display: flex; gap: 12px;
+      margin-top: 32px; justify-content: flex-end;
+    }
+    .carousel-btn {
+      width: 48px; height: 48px;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: border-color .2s, color .2s, background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(232,255,0,.05);
+    }
+
+    /* cards de projeto */
+    .project-card {
+      min-width: calc(33.333% - 16px);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: border-color .3s, transform .3s;
+      position: relative;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+    /* ============================================================
+       IMAGEM DO CARD — coloque em assets/proj-X.jpg
+       ou troque o gradient por uma <img>
+    ============================================================ */
+    .card-thumb {
+      aspect-ratio: 16/9;
+      background: var(--bg-card2);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-thumb-inner {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: rgba(255,255,255,.05);
+      transition: transform .4s;
+    }
+    .project-card:hover .card-thumb-inner { transform: scale(1.05); }
+    .card-badge {
+      position: absolute; top: 12px; right: 12px;
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--accent);
+      color: #000;
+    }
+    .card-badge.wip {
+      background: var(--accent2);
+      color: #fff;
+    }
+    .card-body { padding: 24px; }
+    /* ============================================================
+       NÚMERO DO PROJETO — preenchido automaticamente via JS
+    ============================================================ */
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      color: var(--text-muted);
+      letter-spacing: .15em;
+      margin-bottom: 8px;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: .05em;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: .85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .card-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 20px;
+    }
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      transition: border-color .2s, color .2s;
+    }
+    .project-card:hover .card-tag { border-color: rgba(232,255,0,.3); }
+    .card-link {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: gap .2s;
+    }
+    .card-link:hover { gap: 14px; }
+
+    /* ── EXPERIÊNCIA / TIMELINE ──────────────────────────────── */
+    #experience { border-top: 1px solid var(--border); }
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 56px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -36px; top: 8px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--text-muted);
+      transition: border-color .3s, background .3s;
+    }
+    .timeline-item:hover::before {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+    /* ============================================================
+       PERÍODO — edite diretamente no HTML (ex: "2023 — Presente")
+    ============================================================ */
+    .tl-period {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .tl-role {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+    }
+    .tl-company {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .tl-desc {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* ── CONTATO ─────────────────────────────────────────────── */
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 160px 48px;
+    }
+    .contact-big {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 10vw, 140px);
+      letter-spacing: -.01em;
+      line-height: .9;
+      margin-bottom: 48px;
+    }
+    .contact-big span { color: var(--accent); }
+    .contact-links {
+      display: flex; justify-content: center; gap: 32px;
+      flex-wrap: wrap;
+    }
+    /* ============================================================
+       LINKS DE CONTATO — edite os href no HTML, seção #contact
+    ============================================================ */
+    .contact-link {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 32px;
+      border: 1px solid var(--border);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(232,255,0,.05);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* ── LINHA DECORATIVA DE TEXTO ───────────────────────────── */
+    .marquee-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 20px 0;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: .3em;
+      color: var(--text-muted);
+      padding: 0 40px;
+      text-transform: uppercase;
+    }
+    .marquee-track span.accent { color: var(--accent); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── RESPONSIVO ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      section { padding: 80px 24px; }
+      #hero { padding: 0 24px 64px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-wrap { max-width: 320px; }
+      .project-card { min-width: calc(80vw); }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CURSORES CUSTOMIZADOS -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ============================================================
+       NAVEGAÇÃO
+       • .nav-logo  — troque "SN" pelas suas iniciais
+       • .nav-links — pode adicionar/remover links
+  ============================================================ -->
+  <nav>
+    <a class="nav-logo" href="#hero">SN</a>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre</a></li>
+      <li><a href="#projects">Projetos</a></li>
+      <li><a href="#experience">Experiência</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       SEÇÃO HERO
+       • .hero-tag    — sua especialidade / stack principal
+       • .hero-name   — SEU NOME em duas linhas
+       • p dentro de .hero-sub — bio curta de 1-2 linhas
+       • .hero-location — cidade, estado
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg-number">01</div>
+    <p class="hero-tag">Desenvolvedor · Back-end &amp; Front-end</p>
+    <h1 class="hero-name">
+      SEU<br>
+      <span>NOME</span>
+    </h1>
+    <div class="hero-sub">
+      <p>
+        <!-- BIO CURTA — 1 ou 2 frases descrevendo você -->
+        Desenvolvedor apaixonado por construir produtos que fazem sentido,
+        do back-end robusto às interfaces que as pessoas adoram usar.
+      </p>
+      <p class="hero-location">
+        <!-- LOCALIZAÇÃO -->
+        Minas Gerais · Brasil
+      </p>
+    </div>
+    <div class="hero-scroll-hint">Scroll</div>
+  </section>
+
+  <!-- FAIXA DE TEXTO ANIMADA -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- pode editar ou remover os itens abaixo -->
+      <span>Código Limpo</span><span class="accent">✦</span>
+      <span>Projetos Reais</span><span class="accent">✦</span>
+      <span>Back-end</span><span class="accent">✦</span>
+      <span>Front-end</span><span class="accent">✦</span>
+      <span>Estudante</span><span class="accent">✦</span>
+      <span>Em Evolução</span><span class="accent">✦</span>
+      <!-- duplicado para loop infinito -->
+      <span>Código Limpo</span><span class="accent">✦</span>
+      <span>Projetos Reais</span><span class="accent">✦</span>
+      <span>Back-end</span><span class="accent">✦</span>
+      <span>Front-end</span><span class="accent">✦</span>
+      <span>Estudante</span><span class="accent">✦</span>
+      <span>Em Evolução</span><span class="accent">✦</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SEÇÃO SOBRE
+       • Troque o src da <img> pela sua foto (ex: assets/foto.jpg)
+         Se não tiver foto, delete a div .about-img-wrap
+       • Edite os parágrafos do .about-bio
+       • Edite os itens .skill-item com suas tecnologias
+  ============================================================ -->
+  <section id="about">
+    <p class="section-label reveal">// Sobre mim</p>
+    <h2 class="section-title reveal">Quem<br>Sou Eu</h2>
+
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-left">
+        <!-- SUBSTITUA pelo caminho da sua foto ou delete este bloco -->
+        <img src="https://via.placeholder.com/400x530/111111/333333?text=SUA+FOTO" alt="Foto minha" />
+        <div class="about-img-frame"></div>
+      </div>
+
+      <div class="about-content">
+        <p class="about-bio reveal">
+          <!-- PARÁGRAFO 1 — fale um pouco sobre você -->
+          Sou <strong>estudante de [curso]</strong> na [nome da faculdade],
+          mergulhado no mundo do desenvolvimento desde [ano]. Comecei pelo back-end
+          e fui descobrindo que a interface importa tanto quanto a lógica que a move.
+        </p>
+        <p class="about-bio reveal">
+          <!-- PARÁGRAFO 2 — motivação, objetivos -->
+          Me interesso por [áreas de interesse — ex: fintech, automação, dados].
+          Cada projeto que começo, terminado ou não, me ensina algo novo sobre como
+          pensar em sistemas e sobre como as pessoas usam software.
+        </p>
+
+        <div>
+          <p class="section-label reveal" style="margin-bottom:16px">// Stack & Ferramentas</p>
+          <div class="skills-grid">
+            <!-- ADICIONE OU REMOVA tecnologias aqui -->
+            <div class="skill-item reveal">Python</div>
+            <div class="skill-item reveal">Java</div>
+            <div class="skill-item reveal">JavaScript</div>
+            <div class="skill-item reveal">React</div>
+            <div class="skill-item reveal">Node.js</div>
+            <div class="skill-item reveal">SQL</div>
+            <div class="skill-item reveal">Git</div>
+            <div class="skill-item reveal">HTML / CSS</div>
+            <div class="skill-item reveal">[Outra]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO PROJETOS — 3 CATEGORIAS EM CARROSSEL
+       Categorias: Pessoais · Faculdade · Não Terminados
+
+       COMO ADICIONAR UM PROJETO:
+       1. Copie um bloco <div class="project-card"> completo
+       2. Cole dentro do .carousel-track correto (pessoal, faculdade ou wip)
+       3. Edite título, descrição, tags e link
+       4. Para projetos não terminados, o .card-badge já está como WIP (vermelho)
+
+       COMO REMOVER UM PROJETO:
+       Apenas delete o bloco <div class="project-card"> correspondente
+
+       IMAGEM DO CARD:
+       Troque o texto dentro de .card-thumb-inner por:
+       <img src="assets/proj-X.jpg" style="width:100%;height:100%;object-fit:cover">
+  ============================================================ -->
+  <section id="projects">
+    <p class="section-label reveal">// Meu Trabalho</p>
+    <h2 class="section-title reveal">Projetos</h2>
+
+    <!-- ABAS -->
+    <div class="projects-tabs reveal">
+      <button class="tab-btn active" data-tab="personal">Pessoais</button>
+      <button class="tab-btn" data-tab="college">Faculdade</button>
+      <button class="tab-btn" data-tab="wip">Não Terminados</button>
+    </div>
+
+    <!-- ── ABA: PROJETOS PESSOAIS ── -->
+    <div class="tab-panel active" id="tab-personal">
+      <div class="carousel-wrap">
+        <div class="carousel-track" id="track-personal">
+
+          <!-- ★ PROJETO PESSOAL 1 — edite aqui -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">P1</div>
+              <span class="card-badge">Pessoal</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 01</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">Breve descrição do que o projeto faz e qual problema ele resolve. Seja direto e claro.</p>
+              <div class="card-tags">
+                <span class="card-tag">Python</span>
+                <span class="card-tag">Flask</span>
+                <!-- adicione mais tags conforme necessário -->
+              </div>
+              <a class="card-link" href="#" target="_blank">
+                Ver projeto &rarr;
+                <!-- troque o # pelo link do GitHub ou deploy -->
+              </a>
+            </div>
+          </div>
+
+          <!-- ★ PROJETO PESSOAL 2 — edite aqui -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">P2</div>
+              <span class="card-badge">Pessoal</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 02</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">Breve descrição do que o projeto faz e qual problema ele resolve.</p>
+              <div class="card-tags">
+                <span class="card-tag">JavaScript</span>
+                <span class="card-tag">React</span>
+              </div>
+              <a class="card-link" href="#" target="_blank">Ver projeto &rarr;</a>
+            </div>
+          </div>
+
+          <!-- ★ ADICIONE MAIS PROJETOS PESSOAIS AQUI (copie um card acima) -->
+
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-dir="-1" data-track="track-personal">&#8592;</button>
+        <button class="carousel-btn" data-dir="1"  data-track="track-personal">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- ── ABA: PROJETOS DA FACULDADE ── -->
+    <div class="tab-panel" id="tab-college">
+      <div class="carousel-wrap">
+        <div class="carousel-track" id="track-college">
+
+          <!-- ★ PROJETO DA FACULDADE 1 — edite aqui -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">F1</div>
+              <span class="card-badge">Faculdade</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 01</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">Projeto desenvolvido para a disciplina de [nome da disciplina]. Descreva o objetivo e o que foi implementado.</p>
+              <div class="card-tags">
+                <span class="card-tag">Java</span>
+                <span class="card-tag">MySQL</span>
+              </div>
+              <a class="card-link" href="#" target="_blank">Ver repositório &rarr;</a>
+            </div>
+          </div>
+
+          <!-- ★ PROJETO DA FACULDADE 2 — edite aqui -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">F2</div>
+              <span class="card-badge">Faculdade</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 02</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">Breve descrição do projeto acadêmico.</p>
+              <div class="card-tags">
+                <span class="card-tag">Python</span>
+                <span class="card-tag">Django</span>
+              </div>
+              <a class="card-link" href="#" target="_blank">Ver repositório &rarr;</a>
+            </div>
+          </div>
+
+          <!-- ★ ADICIONE MAIS PROJETOS DA FACULDADE AQUI -->
+
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-dir="-1" data-track="track-college">&#8592;</button>
+        <button class="carousel-btn" data-dir="1"  data-track="track-college">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- ── ABA: PROJETOS NÃO TERMINADOS (WIP) ── -->
+    <div class="tab-panel" id="tab-wip">
+      <div class="carousel-wrap">
+        <div class="carousel-track" id="track-wip">
+
+          <!-- ★ WIP 1 — edite aqui -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">W1</div>
+              <span class="card-badge wip">Em Progresso</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 01</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">O que era a ideia, até onde chegou e por que parou (ou vai retomar). Seja honesto — projetos WIP mostram processo.</p>
+              <div class="card-tags">
+                <span class="card-tag">Node.js</span>
+                <span class="card-tag">PostgreSQL</span>
+              </div>
+              <!-- Se não tiver link ainda, pode trocar por: <p class="card-link" style="cursor:default;color:var(--text-muted)">Em desenvolvimento</p> -->
+              <a class="card-link" href="#" target="_blank">Repositório &rarr;</a>
+            </div>
+          </div>
+
+          <!-- ★ WIP 2 -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">W2</div>
+              <span class="card-badge wip">Em Progresso</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 02</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">Descreva a ideia e o estágio atual do desenvolvimento.</p>
+              <div class="card-tags">
+                <span class="card-tag">React</span>
+                <span class="card-tag">Vite</span>
+              </div>
+              <a class="card-link" href="#" target="_blank">Repositório &rarr;</a>
+            </div>
+          </div>
+
+          <!-- ★ WIP 3 -->
+          <div class="project-card">
+            <div class="card-thumb">
+              <div class="card-thumb-inner">W3</div>
+              <span class="card-badge wip">Em Progresso</span>
+            </div>
+            <div class="card-body">
+              <p class="card-num">— 03</p>
+              <h3 class="card-title">Nome do Projeto</h3>
+              <p class="card-desc">Descreva a ideia e o estágio atual.</p>
+              <div class="card-tags">
+                <span class="card-tag">Python</span>
+                <span class="card-tag">FastAPI</span>
+              </div>
+              <a class="card-link" href="#" target="_blank">Repositório &rarr;</a>
+            </div>
+          </div>
+
+          <!-- ★ ADICIONE QUANTOS WIPs QUISER AQUI -->
+          <!-- Como você tem muitos, basta copiar um card acima e colar aqui -->
+
+        </div>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-dir="-1" data-track="track-wip">&#8592;</button>
+        <button class="carousel-btn" data-dir="1"  data-track="track-wip">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO EXPERIÊNCIA / FORMAÇÃO
+       • Adicione itens .timeline-item conforme necessário
+       • Se ainda não tem experiência profissional, coloque
+         projetos relevantes, cursos ou estágios
+       • Se não tiver nada ainda, pode deletar esta seção inteira
+  ============================================================ -->
+  <section id="experience">
+    <p class="section-label reveal">// Trajetória</p>
+    <h2 class="section-title reveal">Experiência<br>&amp; Formação</h2>
+
+    <div class="timeline">
+
+      <!-- ★ ITEM 1 — mais recente primeiro -->
+      <div class="timeline-item reveal">
+        <p class="tl-period">
+          <!-- PERÍODO: ex "2022 — Presente" ou "Jan 2023 — Dez 2023" -->
+          20XX — Presente
+        </p>
+        <h3 class="tl-role">
+          <!-- CARGO / TÍTULO: ex "Desenvolvedor Back-end Júnior" -->
+          Cargo ou Título
+        </h3>
+        <p class="tl-company">
+          <!-- EMPRESA / INSTITUIÇÃO -->
+          Empresa ou Faculdade · [Cidade]
+        </p>
+        <p class="tl-desc">
+          <!-- DESCRIÇÃO: o que você faz/fez -->
+          Descreva brevemente suas responsabilidades, tecnologias usadas e
+          algum resultado ou aprendizado relevante que vale destacar.
+        </p>
+      </div>
+
+      <!-- ★ ITEM 2 -->
+      <div class="timeline-item reveal">
+        <p class="tl-period">20XX — 20XX</p>
+        <h3 class="tl-role">Bacharel em [Curso]</h3>
+        <p class="tl-company">Nome da Faculdade · [Cidade]</p>
+        <p class="tl-desc">
+          Cursando [semestre]º semestre. Disciplinas relevantes: [liste algumas].
+          <!-- Edite conforme sua realidade -->
+        </p>
+      </div>
+
+      <!-- ★ ADICIONE MAIS ITENS AQUI (copie um bloco acima) -->
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SEÇÃO CONTATO
+       • Troque os href pelos seus links reais
+       • Adicione ou remova botões conforme desejar
+  ============================================================ -->
+  <section id="contact">
+    <p class="section-label reveal">// Contato</p>
+    <h2 class="contact-big reveal">
+      Vamos<br><span>Conversar</span>
+    </h2>
+    <div class="contact-links reveal">
+      <!-- SUBSTITUA pelos seus links reais -->
+      <a class="contact-link" href="mailto:seu@email.com">E-mail</a>
+      <a class="contact-link" href="https://github.com/seuusuario" target="_blank">GitHub</a>
+      <a class="contact-link" href="https://linkedin.com/in/seuperfil" target="_blank">LinkedIn</a>
+      <!-- Adicione WhatsApp, Instagram, etc se quiser: -->
+      <!-- <a class="contact-link" href="https://wa.me/55XXXXXXXXXXX" target="_blank">WhatsApp</a> -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RODAPÉ
+       • Troque "Seu Nome" abaixo
+  ============================================================ -->
+  <footer>
+    <p>© <span id="year"></span> Seu Nome</p>
+    <p>Feito com HTML · CSS · JS</p>
+  </footer>
+
+  <!-- ── SCRIPTS ─────────────────────────────────────────────── -->
+  <script>
+    // Ano automático no footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Cursor customizado
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      dot.style.transform  = `translate(${mx - 4}px, ${my - 4}px)`;
+      ring.style.transform = `translate(${rx - 16}px, ${ry - 16}px)`;
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    // Scroll reveal com IntersectionObserver
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          // stagger delay baseado na posição do elemento no grupo
+          const siblings = [...e.target.parentElement.children].filter(c =>
+            c.classList.contains('reveal') || c.classList.contains('reveal-left') || c.classList.contains('reveal-right')
+          );
+          const idx = siblings.indexOf(e.target);
+          e.target.style.transitionDelay = (idx * 0.08) + 's';
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => obs.observe(el));
+
+    // Hero load
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Carrossel
+    const offsets = {};
+    document.querySelectorAll('.carousel-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const trackId = btn.dataset.track;
+        const track   = document.getElementById(trackId);
+        const card    = track.querySelector('.project-card');
+        if (!card) return;
+        const cardW   = card.offsetWidth + 24; // card + gap
+        const max     = track.scrollWidth - track.parentElement.offsetWidth;
+        offsets[trackId] = offsets[trackId] || 0;
+        offsets[trackId] += parseInt(btn.dataset.dir) * cardW;
+        offsets[trackId]  = Math.max(0, Math.min(offsets[trackId], max));
+        track.style.transform = `translateX(-${offsets[trackId]}px)`;
+      });
+    });
+  </script>
+</body>
+</html>

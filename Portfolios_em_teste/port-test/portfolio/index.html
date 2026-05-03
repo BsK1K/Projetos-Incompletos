@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Nome | Portfolio Developer</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 🔧 MARCADOR: Meta tags para SEO - edite com suas informações -->
+    <meta name="description" content="Portfolio de [SEU NOME] - Desenvolvedor [SUA ÁREA]">
+    <meta name="keywords" content="portfolio, desenvolvedor, projetos, [SUAS TECNOLOGIAS]">
+</head>
+<body>
+
+    <!-- 🔧 MARCADOR: Cursor personalizado (efeito visual) -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- ==================== HEADER / NAVEGAÇÃO ==================== -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <!-- 🔧 MARCADOR: Edite seu nome/logo aqui -->
+            <a href="#" class="nav__logo">[SEU NOME]<span class="dot">.</span></a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <!-- 🔧 MARCADOR: Edite os links do menu conforme necessário -->
+                    <li><a href="#home" class="nav__link active">Início</a></li>
+                    <li><a href="#about" class="nav__link">Sobre</a></li>
+                    <li><a href="#projects" class="nav__link">Projetos</a></li>
+                    <li><a href="#contact" class="nav__link">Contato</a></li>
+                </ul>
+            </div>
+            
+            <!-- Botão menu mobile -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!-- ==================== SEÇÃO HERO / INÍCIO ==================== -->
+        <section class="home section" id="home">
+            <div class="container">
+                <div class="home__content">
+                    <!-- 🔧 MARCADOR: Edite sua foto (substitua o src) -->
+                    <div class="home__image scroll-animate">
+                        <img src="https://via.placeholder.com/400x400/1a1a1a/ffffff?text=SUA+FOTO" 
+                             alt="Foto de [SEU NOME]" 
+                             class="home__img">
+                    </div>
+                    
+                    <div class="home__text scroll-animate" style="animation-delay: 0.2s">
+                        <!-- 🔧 MARCADOR: Edite seu título e subtítulo -->
+                        <h1 class="home__title">Olá, sou <span class="highlight">[SEU NOME]</span></h1>
+                        <h2 class="home__subtitle">Desenvolvedor [SUA ESPECIALIDADE]</h2>
+                        <p class="home__description">
+                            <!-- 🔧 MARCADOR: Edite sua descrição curta -->
+                            [Uma frase impactante sobre você. Ex: Transformo ideias em código, criando experiências digitais que fazem a diferença.]
+                        </p>
+                        
+                        <div class="home__buttons">
+                            <!-- 🔧 MARCADOR: Edite os links dos botões -->
+                            <a href="#projects" class="btn btn--primary">Ver Projetos</a>
+                            <a href="#contact" class="btn btn--outline">Contato</a>
+                        </div>
+                        
+                        <!-- 🔧 MARCADOR: Edite suas redes sociais -->
+                        <div class="home__social">
+                            <a href="[LINK GITHUB]" target="_blank" class="social__link"><i class="fab fa-github"></i></a>
+                            <a href="[LINK LINKEDIN]" target="_blank" class="social__link"><i class="fab fa-linkedin"></i></a>
+                            <a href="[LINK EMAIL]" class="social__link"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <a href="#about" class="scroll-down">
+                <span class="scroll-down__text">Scroll</span>
+                <div class="scroll-down__icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </a>
+        </section>
+
+        <!-- ==================== SEÇÃO SOBRE ==================== -->
+        <section class="about section" id="about">
+            <div class="container">
+                <h2 class="section__title scroll-animate">Sobre <span class="highlight">Mim</span></h2>
+                
+                <div class="about__content">
+                    <div class="about__text scroll-animate">
+                        <!-- 🔧 MARCADOR: Edite seu texto "Sobre Mim" -->
+                        <p>
+                            [Escreva aqui sua história. Ex: Sou estudante de [SEU CURSO] na [SUA FACULDADE], com paixão por tecnologia e desenvolvimento de software...]
+                        </p>
+                        <p>
+                            [Adicione mais parágrafos conforme necessário. Fale sobre suas habilidades, objetivos e o que te motiva.]
+                        </p>
+                        
+                        <!-- 🔧 MARCADOR: Edite suas habilidades/tecnologias -->
+                        <div class="about__skills">
+                            <h3>Tecnologias que trabalho:</h3>
+                            <div class="skills__list">
+                                <!-- 🔧 MARCADOR: Adicione ou remova skills conforme seu conhecimento -->
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">[ADICIONE MAIS]</span>
+                                <span class="skill-tag">[ADICIONE MAIS]</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 🔧 MARCADOR: Edite informações de contato rápidas -->
+                    <div class="about__info scroll-animate" style="animation-delay: 0.3s">
+                        <div class="info__item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>Formação</h4>
+                            <!-- 🔧 MARCADOR: Edite sua formação -->
+                            <p>[SEU CURSO]<br>[SUA FACULDADE]</p>
+                        </div>
+                        <div class="info__item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4>Localização</h4>
+                            <!-- 🔧 MARCADOR: Edite sua cidade -->
+                            <p>[SUA CIDADE], [SEU ESTADO]</p>
+                        </div>
+                        <div class="info__item">
+                            <i class="fas fa-code"></i>
+                            <h4>Disponibilidade</h4>
+                            <!-- 🔧 MARCADOR: Edite sua disponibilidade -->
+                            <p>[Ex: Freelance / Estágio / Projetos]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SEÇÃO PROJETOS ==================== -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <h2 class="section__title scroll-animate">Meus <span class="highlight">Projetos</span></h2>
+                <p class="section__subtitle scroll-animate">Navegue pelas categorias para ver meu trabalho</p>
+                
+                <!-- TABS PARA SELECIONAR CATEGORIA -->
+                <div class="projects__tabs scroll-animate">
+                    <button class="tab-btn active" data-tab="university">
+                        <i class="fas fa-university"></i> Faculdade
+                    </button>
+                    <button class="tab-btn" data-tab="personal">
+                        <i class="fas fa-user"></i> Pessoais (Prontos)
+                    </button>
+                    <button class="tab-btn" data-tab="wip">
+                        <i class="fas fa-tools"></i> Em Desenvolvimento
+                    </button>
+                </div>
+                
+                <!-- CARROSSEL: PROJETOS DA FACULDADE -->
+                <div class="carousel-wrapper active" id="university">
+                    <h3 class="carousel__title">🎓 Projetos da Faculdade</h3>
+                    <!-- 🔧 MARCADOR: Para adicionar um projeto, copie o bloco "carousel__slide" e edite os dados -->
+                    <div class="carousel">
+                        <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <div class="carousel__track">
+                            <!-- ===== PROJETO 1 - FACULDADE ===== -->
+                            <!-- 🔧 COPIE ESTE BLOCO PARA ADICIONAR MAIS PROJETOS -->
+                            <div class="carousel__slide">
+                                <div class="project-card">
+                                    <!-- 🔧 MARCADOR: Imagem do projeto (use placeholder ou seu print) -->
+                                    <div class="project-card__image">
+                                        <img src="https://via.placeholder.com/400x250/2a2a2a/ffffff?text=PROJETO+FACULDADE+1" 
+                                             alt="Nome do Projeto">
+                                        <span class="project-card__badge">Faculdade</span>
+                                    </div>
+                                    <div class="project-card__content">
+                                        <!-- 🔧 MARCADOR: Título do projeto -->
+                                        <h4 class="project-card__title">[NOME DO PROJETO]</h4>
+                                        <!-- 🔧 MARCADOR: Descrição curta -->
+                                        <p class="project-card__desc">[Breve descrição do que o projeto faz]</p>
+                                        <!-- 🔧 MARCADOR: Tecnologias usadas -->
+                                        <div class="project-card__tech">
+                                            <span>[TEC 1]</span>
+                                            <span>[TEC 2]</span>
+                                            <span>[TEC 3]</span>
+                                        </div>
+                                        <div class="project-card__links">
+                                            <!-- 🔧 MARCADOR: Links do projeto (remova se não tiver) -->
+                                            <a href="[LINK DEMO]" target="_blank" class="project-card__link">
+                                                <i class="fas fa-external-link-alt"></i> Demo
+                                            </a>
+                                            <a href="[LINK GITHUB]" target="_blank" class="project-card__link">
+                                                <i class="fab fa-github"></i> Código
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ===== FIM PROJETO 1 ===== -->
+                            
+                            <!-- 🔧 COLE AQUI MAIS PROJETOS DA FACULDADE (copie o bloco acima) -->
+                            
+                        </div>
+                        
+                        <button class="carousel__btn carousel__btn--next" aria-label="Próximo">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="carousel__dots" id="dots-university"></div>
+                </div>
+                
+                <!-- CARROSSEL: PROJETOS PESSOAIS PRONTOS -->
+                <div class="carousel-wrapper" id="personal">
+                    <h3 class="carousel__title">✨ Projetos Pessoais (Prontos)</h3>
+                    <div class="carousel">
+                        <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <div class="carousel__track">
+                            <!-- ===== PROJETO 1 - PESSOAL ===== -->
+                            <!-- 🔧 COPIE ESTE BLOCO PARA ADICIONAR MAIS PROJETOS -->
+                            <div class="carousel__slide">
+                                <div class="project-card">
+                                    <div class="project-card__image">
+                                        <img src="https://via.placeholder.com/400x250/2a2a2a/ffffff?text=PROJETO+PESSOAL+1" 
+                                             alt="Nome do Projeto">
+                                        <span class="project-card__badge">Pessoal</span>
+                                    </div>
+                                    <div class="project-card__content">
+                                        <h4 class="project-card__title">[NOME DO PROJETO]</h4>
+                                        <p class="project-card__desc">[O que este projeto resolve?]</p>
+                                        <div class="project-card__tech">
+                                            <span>[TEC 1]</span>
+                                            <span>[TEC 2]</span>
+                                        </div>
+                                        <div class="project-card__links">
+                                            <a href="[LINK]" target="_blank" class="project-card__link">
+                                                <i class="fas fa-external-link-alt"></i> Ver
+                                            </a>
+                                            <a href="[GITHUB]" target="_blank" class="project-card__link">
+                                                <i class="fab fa-github"></i> Código
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ===== FIM PROJETO 1 ===== -->
+                            
+                            <!-- 🔧 COLE AQUI MAIS PROJETOS PESSOAIS -->
+                            
+                        </div>
+                        
+                        <button class="carousel__btn carousel__btn--next" aria-label="Próximo">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="carousel__dots" id="dots-personal"></div>
+                </div>
+                
+                <!-- CARROSSEL: PROJETOS EM DESENVOLVIMENTO (WIP) -->
+                <div class="carousel-wrapper" id="wip">
+                    <h3 class="carousel__title">🚧 Em Desenvolvimento</h3>
+                    <p class="carousel__note">Ideias e projetos que estou construindo aos poucos 💡</p>
+                    
+                    <div class="carousel">
+                        <button class="carousel__btn carousel__btn--prev" aria-label="Anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        
+                        <div class="carousel__track">
+                            <!-- ===== PROJETO WIP 1 ===== -->
+                            <!-- 🔧 COPIE ESTE BLOCO PARA ADICIONAR MAIS PROJETOS WIP -->
+                            <div class="carousel__slide">
+                                <div class="project-card project-card--wip">
+                                    <div class="project-card__image">
+                                        <img src="https://via.placeholder.com/400x250/1a1a2e/ffffff?text=WIP+PROJECT" 
+                                             alt="Projeto em andamento">
+                                        <span class="project-card__badge badge--wip">WIP</span>
+                                    </div>
+                                    <div class="project-card__content">
+                                        <h4 class="project-card__title">[NOME DA IDEIA/PROJETO]</h4>
+                                        <p class="project-card__desc">[O que você pretende criar? Qual o objetivo?]</p>
+                                        <div class="project-card__status">
+                                            <span class="status-dot"></span>
+                                            <span>Em progresso</span>
+                                        </div>
+                                        <div class="project-card__tech">
+                                            <span>[TEC QUE PRETENDE USAR]</span>
+                                        </div>
+                                        <!-- Projetos WIP podem não ter links ainda -->
+                                        <div class="project-card__links">
+                                            <span class="project-card__link disabled">
+                                                <i class="fas fa-hourglass-half"></i> Em breve
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ===== FIM PROJETO WIP 1 ===== -->
+                            
+                            <!-- 🔧 COLE AQUI MAIS PROJETOS EM DESENVOLVIMENTO -->
+                            <!-- Como você tem muitos, pode adicionar quantos quiser! -->
+                            
+                        </div>
+                        
+                        <button class="carousel__btn carousel__btn--next" aria-label="Próximo">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="carousel__dots" id="dots-wip"></div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- ==================== SEÇÃO CONTATO ==================== -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2 class="section__title scroll-animate">Vamos <span class="highlight">Conversar?</span></h2>
+                
+                <div class="contact__content">
+                    <div class="contact__text scroll-animate">
+                        <p>
+                            <!-- 🔧 MARCADOR: Edite sua mensagem de convite -->
+                            [Estou sempre aberto a novas oportunidades, colaborações ou apenas um bate-papo sobre tecnologia. Sinta-se à vontade para entrar em contato!]
+                        </p>
+                        
+                        <!-- 🔧 MARCADOR: Edite seus dados de contato -->
+                        <div class="contact__info">
+                            <a href="mailto:[SEU EMAIL]" class="contact__item">
+                                <i class="fas fa-envelope"></i>
+                                <span>[seu.email@exemplo.com]</span>
+                            </a>
+                            <a href="[LINK LINKEDIN]" target="_blank" class="contact__item">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="[LINK GITHUB]" target="_blank" class="contact__item">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 🔧 MARCADOR: Formulário de contato (opcional) -->
+                    <!-- Para funcionar, você precisará de um backend ou serviço como Formspree -->
+                    <form class="contact__form scroll-animate" style="animation-delay: 0.2s" 
+                          action="https://formspree.io/f/[SEU_ID_FORMSPREE]" method="POST">
+                        <!-- 🔧 MARCADOR: Substitua [SEU_ID_FORMSPREE] pelo seu ID do Formspree ou remova o form -->
+                        
+                        <div class="form__group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" required placeholder="Seu nome">
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Sua mensagem..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn--primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <!-- 🔧 MARCADOR: Edite o texto do footer -->
+            <p>&copy; 2026 [SEU NOME]. Todos os direitos reservados.</p>
+            <p class="footer__credit">Feito com <i class="fas fa-heart"></i> e muito café ☕</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Principal -->
+    <script src="js/script.js"></script>
+    
+</body>
+</html>
