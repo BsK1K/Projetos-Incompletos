@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e3eae3",
+                    "on-tertiary-container": "#711419",
+                    "on-surface-variant": "#3c4a42",
+                    "surface-container-low": "#eef6ee",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#410005",
+                    "surface-container-highest": "#dde4dd",
+                    "primary-fixed-dim": "#4edea3",
+                    "tertiary-fixed-dim": "#ffb3af",
+                    "tertiary": "#a43a3a",
+                    "tertiary-fixed": "#ffdad7",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2b322d",
+                    "surface-tint": "#006c49",
+                    "surface-variant": "#dde4dd",
+                    "on-background": "#161d19",
+                    "primary-fixed": "#6ffbbe",
+                    "inverse-on-surface": "#ebf3eb",
+                    "on-primary-fixed-variant": "#005236",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#dae2fd",
+                    "outline": "#6c7a71",
+                    "on-error": "#ffffff",
+                    "surface": "#f4fbf4",
+                    "outline-variant": "#bbcabf",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f4fbf4",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "tertiary-container": "#fc7c78",
+                    "background": "#f4fbf4",
+                    "surface-dim": "#d4dcd5",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-container": "#00422b",
+                    "on-tertiary-fixed-variant": "#842225",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "primary": "#006c49",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#002113",
+                    "secondary": "#565e74",
+                    "surface-container": "#e8f0e9",
+                    "inverse-primary": "#4edea3",
+                    "on-secondary-container": "#5c647a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "2rem",
+                    "gutter": "1rem",
+                    "xl": "2rem",
+                    "md": "1rem",
+                    "xs": "0.25rem",
+                    "sm": "0.5rem",
+                    "lg": "1.5rem",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "h2": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-base": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h1": ["Inter"],
+                    "h3": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h1": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h3": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-gradient {
+            background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-base text-on-background">
+<!-- SideNavBar Anchor -->
+<aside class="fixed left-0 top-0 h-full w-[280px] sidebar-gradient border-r border-zinc-800 flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-lg font-bold text-white tracking-tight">LogiFlow</h1>
+<p class="text-zinc-500 text-xs font-medium uppercase tracking-widest mt-1">Logistics Management</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+<span class="font-label-md">Orders</span>
+</a>
+<!-- Active Navigation: Stock (Estoque) -->
+<a class="text-white bg-emerald-600/10 border-l-4 border-emerald-500 flex items-center gap-3 px-4 py-3 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md">Stock</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md">Customers</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-md">Reports</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pt-6 border-t border-zinc-800">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-emerald-500 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a logistics manager in a high-tech control center. The lighting is soft and blue-toned, reflecting off minimalist glass screens in the background. The manager has a focused and calm expression, embodying the precision and reliability of the LogiFlow brand. The overall aesthetic is clean, corporate modern, with a high-key light mode feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbpgccOQE5TDJWgYcVwUBzzSyd6rvV_8czFbNDv5kP3404mZliCeKL8kdYuVOdKPYJgHtxD3uIft2xVp8zlKtJRCZ2NX7kfbzdkBzKw6kgHIy6GbLrw5jgR8atX3jTtUC1EEWtX75CtMDaTcSADCHgpeyyvNdSauOAwx3X6v92JF7d2sV_euqZ6xG_mkaF1leTjDardgZsqqB8nbqHAOgwBU1lakDoIH0Bf4cqeMbxraVYDrAX3QBQnpN2JdNBpgTqNE3G1xl-zVQ"/>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-label-md">Admin User</span>
+<span class="text-zinc-500 text-xs">Warehouse A</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] min-h-screen">
+<!-- TopAppBar Anchor -->
+<header class="h-16 bg-white border-b border-zinc-200 px-8 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+<div class="flex items-center gap-4">
+<h2 class="font-h2 text-h2 text-on-background">Estoque</h2>
+<div class="h-4 w-px bg-zinc-200"></div>
+<nav class="flex gap-6">
+<a class="text-emerald-600 border-b-2 border-emerald-600 pb-2 font-label-md" href="#">Stock</a>
+<a class="text-zinc-500 hover:text-zinc-900 font-label-md transition-colors" href="#">Warehouse</a>
+<a class="text-zinc-500 hover:text-zinc-900 font-label-md transition-colors" href="#">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-[20px]" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all w-64" placeholder="Buscar produtos, SKU..." type="text"/>
+</div>
+<button class="bg-primary-container hover:bg-emerald-600 text-white px-4 py-2 rounded-lg font-label-md flex items-center gap-2 transition-colors active:scale-95 duration-150 shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    Nova Entrada
+                </button>
+<div class="flex items-center gap-1 ml-2">
+<button class="p-2 text-zinc-500 hover:bg-zinc-50 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-zinc-500 hover:bg-zinc-50 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8 space-y-6">
+<!-- Quick Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-white p-6 rounded-xl border border-zinc-100 shadow-sm flex flex-col gap-1">
+<span class="text-zinc-500 font-label-caps uppercase">Total SKUs</span>
+<div class="flex items-baseline gap-2">
+<span class="text-h1 font-h1">2.481</span>
+<span class="text-emerald-600 text-xs font-bold">+12%</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-zinc-100 shadow-sm flex flex-col gap-1">
+<span class="text-zinc-500 font-label-caps uppercase">Baixo Estoque</span>
+<div class="flex items-baseline gap-2">
+<span class="text-h1 font-h1 text-error">24</span>
+<span class="text-zinc-400 text-xs font-medium">itens</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-zinc-100 shadow-sm flex flex-col gap-1">
+<span class="text-zinc-500 font-label-caps uppercase">Movimentação (24h)</span>
+<div class="flex items-baseline gap-2">
+<span class="text-h1 font-h1">156</span>
+<span class="text-emerald-600 text-xs font-bold">In/Out</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-zinc-100 shadow-sm flex flex-col gap-1">
+<span class="text-zinc-500 font-label-caps uppercase">Capacidade</span>
+<div class="flex items-baseline gap-2">
+<span class="text-h1 font-h1">84%</span>
+<div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[84%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Inventory Table Container -->
+<div class="bg-white rounded-xl border border-zinc-100 shadow-sm overflow-hidden">
+<div class="p-4 border-b border-zinc-100 flex items-center justify-between bg-zinc-50/50">
+<div class="flex gap-2">
+<button class="px-3 py-1.5 bg-white border border-zinc-200 rounded-md text-xs font-medium flex items-center gap-1.5 hover:bg-zinc-50">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span>
+                            Filtros
+                        </button>
+<button class="px-3 py-1.5 bg-white border border-zinc-200 rounded-md text-xs font-medium flex items-center gap-1.5 hover:bg-zinc-50">
+<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+                            Exportar
+                        </button>
+</div>
+<span class="text-xs text-zinc-500 font-medium">Mostrando 1-10 de 2.481 itens</span>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-white">
+<th class="px-6 py-4 text-zinc-500 font-label-caps uppercase tracking-wider border-b border-zinc-100">SKU</th>
+<th class="px-6 py-4 text-zinc-500 font-label-caps uppercase tracking-wider border-b border-zinc-100">Nome do Produto</th>
+<th class="px-6 py-4 text-zinc-500 font-label-caps uppercase tracking-wider border-b border-zinc-100">Quantidade</th>
+<th class="px-6 py-4 text-zinc-500 font-label-caps uppercase tracking-wider border-b border-zinc-100">Localização</th>
+<th class="px-6 py-4 text-zinc-500 font-label-caps uppercase tracking-wider border-b border-zinc-100 text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-zinc-100">
+<!-- Row 1: Parent Product -->
+<tr class="hover:bg-zinc-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-zinc-600">LF-JKT-092</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-zinc-100 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean product shot of a minimalist techwear jacket in a soft grey tone, presented against a pure white background. The lighting is professional studio quality with subtle shadows, emphasizing the fabric texture. The aesthetic is modern and premium, aligning with a high-end logistics inventory system's clean data visualization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaD5h7NUt4Ux75GTCrdx5mReUDPuMzPWdgoxH0A4-SyAfmFuiEGK_HA6Yn1UeiU_JizW_CnvD8mWGXxw6GAJkQX2aO4hepn-EmfYgeTqlzm_PNqxwQVDB-9hUaB3eDApYoMusNvtldwb1t0xhb1W9Hu6S5S7d6PPrWrw3nDAUoaD3JI2o9gECKuy7PxVWK1fFezrF0Tu3j1sX_cU2PKjoZP4dUqA7Rl3VCWpCkTwSuXoQVNvQ-fStGJ-3eMGK9u06z730yHdtcNJU"/>
+</div>
+<div>
+<span class="font-medium text-zinc-900 block">Jaqueta Térmica Pro</span>
+<span class="text-xs text-zinc-500">3 variações agrupadas</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-zinc-900">142</span>
+<span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Estável</span>
+</div>
+</td>
+<td class="px-6 py-4 text-zinc-600 font-medium">SETOR-A / 01-02</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 text-zinc-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-zinc-400 hover:text-zinc-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2-4: Variations (Nested) -->
+<tr class="bg-zinc-50/30">
+<td class="px-6 py-3 pl-12 font-mono text-[10px] text-zinc-400 italic">LF-JKT-092-SM-BK</td>
+<td class="px-6 py-3 pl-16">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-zinc-900"></div>
+<span class="text-xs text-zinc-500">Tamanho P • Preto</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium text-error">8</span>
+<span class="material-symbols-outlined text-error text-[14px]" data-icon="warning">warning</span>
+<span class="text-[10px] text-error font-semibold uppercase">Repor</span>
+</div>
+</td>
+<td class="px-6 py-3 text-xs text-zinc-400">A-01-02-01</td>
+<td class="px-6 py-3 text-right">
+<span class="text-[10px] text-zinc-400 font-medium">SKU Individual</span>
+</td>
+</tr>
+<tr class="bg-zinc-50/30">
+<td class="px-6 py-3 pl-12 font-mono text-[10px] text-zinc-400 italic">LF-JKT-092-MD-BK</td>
+<td class="px-6 py-3 pl-16">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-zinc-900"></div>
+<span class="text-xs text-zinc-500">Tamanho M • Preto</span>
+</div>
+</td>
+<td class="px-6 py-3">
+<span class="text-xs font-medium text-zinc-700">64</span>
+</td>
+<td class="px-6 py-3 text-xs text-zinc-400">A-01-02-02</td>
+<td class="px-6 py-3 text-right"></td>
+</tr>
+<!-- Row 5: Single Item -->
+<tr class="hover:bg-zinc-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-zinc-600">LF-SCP-441</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-zinc-100 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A vibrant product shot of a technical performance sneaker in bright red. The shoe is positioned dynamically against a clean, light-grey gradient background. Sharp focus on materials and construction details. The lighting is crisp, highlighting the high-performance nature of the product within the LogiFlow inventory dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAavo_OVJRT8XAlEPOP0AoZYvm7VDmT-9kV-CHuaaEvXRYelSEZaq7gSEpBcUKEv1knjck64CYwkNnbmQLGWiV3ZHg6XdcC4WPMHVbnOFmAoGiBCp1FyO0wh90Ct22uxDkFJlNXzJ_pf_OsHFO_j8hwQvjec6PNgGZl6lbeIzy4Hn2MxTRG4UTZ0I-mr6rWgcryf2SqYn6V092tEk5qmR4tIUPSWRGx5p1sw-zmuO9eQO07tDD-p2vbQTzCow5f5ZocctTNhRPdMXs"/>
+</div>
+<div>
+<span class="font-medium text-zinc-900 block">Sapatilha Aeroflow V2</span>
+<span class="text-xs text-zinc-400">Unidade Única</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-zinc-900">421</span>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full text-[10px] font-bold uppercase tracking-wider">Alto</span>
+</div>
+</td>
+<td class="px-6 py-4 text-zinc-600 font-medium">SETOR-B / 04-11</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 text-zinc-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-zinc-400 hover:text-zinc-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 6: Low Stock Item -->
+<tr class="hover:bg-zinc-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-zinc-600">LF-TRK-112</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-zinc-100 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A studio close-up of high-quality logistics packing materials, specifically a branded heavy-duty tape dispenser. The scene is lit with bright, neutral lighting to emphasize industrial utility and reliability. Background is a soft, out-of-focus warehouse environment, maintaining the professional corporate modern aesthetic of the LogiFlow UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCjOHw4zuR5xp6xgf0pzq4LfX8KEfYiDZIUgqBlyD-8CunNTE_pC9xBASwbDgXRBEPg6zxcj9IFQ710DwiziWHLapyptp9dg_7AsH_BUSnLkoGQas-rEF4DaHI1ehqN8jZNW3rTHwXul8wM1W8mY3k9Bz0roxeaEX74iPvLVME0Hur8Qp1zzeI84P8DsY7sAHiX1pT8BbBonS0qMRdtwMfdysasnceg7kBbRoL4WAXXGD7lrJiz0GZf-ddIweyYvo_cR8z9kHPadQ"/>
+</div>
+<div>
+<span class="font-medium text-zinc-900 block">Rastreador GPS Nano</span>
+<span class="text-xs text-zinc-500">Componente Eletrônico</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-error">12</span>
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded-full text-[10px] font-bold uppercase tracking-wider">Alerta Crítico</span>
+</div>
+</td>
+<td class="px-6 py-4 text-zinc-600 font-medium">SETOR-D / 12-01</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1.5 text-zinc-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-zinc-400 hover:text-zinc-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-white flex items-center justify-between border-t border-zinc-100">
+<button class="flex items-center gap-2 text-zinc-500 font-label-md hover:text-zinc-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+                        Anterior
+                    </button>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-emerald-600 text-white font-medium text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-600 font-medium text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-600 font-medium text-xs">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-zinc-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-zinc-100 text-zinc-600 font-medium text-xs">24</button>
+</div>
+<button class="flex items-center gap-2 text-zinc-500 font-label-md hover:text-zinc-900 transition-colors">
+                        Próximo
+                        <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Inventory Insights Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-zinc-900 rounded-xl p-6 text-white overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-h3 text-h3 mb-2">Otimização Inteligente</h3>
+<p class="text-zinc-400 text-sm mb-6 max-w-sm">Nosso algoritmo sugere realocar 45 itens do Setor A para o Setor B para reduzir o tempo de separação em 12%.</p>
+<button class="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 px-4 py-2 rounded-lg font-bold text-sm transition-colors">
+                            Ver Recomendações
+                        </button>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] text-white/5 pointer-events-none" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="bg-white border border-zinc-100 rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-h3 text-h3">Localização do Galpão</h3>
+<span class="text-xs text-emerald-600 font-bold uppercase tracking-wider">Ao Vivo</span>
+</div>
+<div class="h-40 rounded-lg bg-zinc-100 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A wide-angle, high-perspective photograph of a modern, organized logistics warehouse. High shelving units filled with neatly packed boxes stretch into the distance. Bright, even industrial lighting clarifies every detail. The atmosphere is efficient, clean, and technologically advanced, reflecting the 'Precision Flow' design philosophy of the LogiFlow brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3AbNTMdV9BJU6lGXDs04vE-EJX8kDYRPwr6l8zEV9ww4KBmw1HhuU6E256W-tcLbaEHKEuYG-_56IQdj49X_l1x_TWvRs_Ze7Ve7YYcPtwYjffSnDpPFm8o4yva-Ktlft_nU26Q1fcC5PuBuznruxnVIdDKrR-7yXfJEoiCF5yjI2toHVB5s23AETYdn32IuZBKThVC-dwxwND8iWz2zDvq0qwTg6NYBQiARx9XWhKZ5O7R9z10tPCBxzp8O3fej5ILOUvYGUOQM"/>
+<div class="absolute inset-0 bg-emerald-900/10 mix-blend-multiply"></div>
+<div class="absolute top-1/2 left-1/3 w-4 h-4 bg-emerald-500 rounded-full animate-pulse border-2 border-white"></div>
+<div class="absolute bottom-1/4 right-1/2 w-4 h-4 bg-emerald-500 rounded-full animate-pulse border-2 border-white"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick actions - Only on main dashboard/inventory context -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-zinc-950 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+</button>
+</body></html>

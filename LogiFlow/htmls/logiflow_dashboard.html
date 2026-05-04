@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface-container-high": "#e3eae3",
+                  "on-tertiary-container": "#711419",
+                  "on-surface-variant": "#3c4a42",
+                  "surface-container-low": "#eef6ee",
+                  "on-error-container": "#93000a",
+                  "on-tertiary-fixed": "#410005",
+                  "surface-container-highest": "#dde4dd",
+                  "primary-fixed-dim": "#4edea3",
+                  "tertiary-fixed-dim": "#ffb3af",
+                  "tertiary": "#a43a3a",
+                  "tertiary-fixed": "#ffdad7",
+                  "surface-container-lowest": "#ffffff",
+                  "inverse-surface": "#2b322d",
+                  "surface-tint": "#006c49",
+                  "surface-variant": "#dde4dd",
+                  "on-background": "#161d19",
+                  "primary-fixed": "#6ffbbe",
+                  "inverse-on-surface": "#ebf3eb",
+                  "on-primary-fixed-variant": "#005236",
+                  "on-secondary": "#ffffff",
+                  "secondary-fixed": "#dae2fd",
+                  "outline": "#6c7a71",
+                  "on-error": "#ffffff",
+                  "surface": "#f4fbf4",
+                  "outline-variant": "#bbcabf",
+                  "on-tertiary": "#ffffff",
+                  "surface-bright": "#f4fbf4",
+                  "on-secondary-fixed-variant": "#3f465c",
+                  "tertiary-container": "#fc7c78",
+                  "background": "#f4fbf4",
+                  "surface-dim": "#d4dcd5",
+                  "on-secondary-fixed": "#131b2e",
+                  "on-primary-container": "#00422b",
+                  "on-tertiary-fixed-variant": "#842225",
+                  "error-container": "#ffdad6",
+                  "secondary-fixed-dim": "#bec6e0",
+                  "primary": "#006c49",
+                  "on-surface": "#161d19",
+                  "error": "#ba1a1a",
+                  "primary-container": "#10b981",
+                  "secondary-container": "#dae2fd",
+                  "on-primary": "#ffffff",
+                  "on-primary-fixed": "#002113",
+                  "secondary": "#565e74",
+                  "surface-container": "#e8f0e9",
+                  "inverse-primary": "#4edea3",
+                  "on-secondary-container": "#5c647a"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "container-padding": "2rem",
+                  "gutter": "1rem",
+                  "xl": "2rem",
+                  "md": "1rem",
+                  "xs": "0.25rem",
+                  "sm": "0.5rem",
+                  "lg": "1.5rem",
+                  "unit": "4px"
+          },
+          "fontFamily": {
+                  "h2": ["Inter"],
+                  "label-md": ["Inter"],
+                  "body-base": ["Inter"],
+                  "body-sm": ["Inter"],
+                  "h1": ["Inter"],
+                  "h3": ["Inter"],
+                  "label-caps": ["Inter"]
+          },
+          "fontSize": {
+                  "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                  "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                  "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                  "h1": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "h3": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .sidebar-gradient {
+      background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 sidebar-gradient w-[280px] border-r border-zinc-800 shadow-xl z-50">
+<div class="px-8 mb-10">
+<h1 class="text-lg font-bold text-white tracking-tight">LogiFlow</h1>
+<p class="text-zinc-500 text-xs font-medium uppercase tracking-widest mt-1">Logistics Management</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="text-white bg-emerald-600/10 border-l-4 border-emerald-500 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined text-emerald-500">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">package</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="font-label-md text-label-md">Stock</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="text-zinc-400 hover:text-zinc-100 flex items-center gap-3 px-4 py-3 hover:bg-zinc-900 transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-8 mt-auto pt-6 border-t border-zinc-800/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-500">account_circle</span>
+</div>
+<div>
+<p class="text-white text-sm font-semibold">Admin User</p>
+<p class="text-zinc-500 text-xs">Logistics Lead</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-[280px] min-h-screen p-xl">
+<!-- TopNavBar Style Header (Inline) -->
+<header class="flex items-center justify-between mb-xl">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Dashboard Overview</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Real-time supply chain performance and inventory tracking.</p>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-surface-container-high hover:bg-surface-container-highest p-sm rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+          Novo Pedido
+        </button>
+</div>
+</header>
+<!-- Stats 3-Column Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 bg-amber-500/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-amber-500 text-[28px]">package</span>
+</div>
+<span class="bg-amber-500/10 text-amber-700 px-sm py-xs rounded-full font-label-caps text-label-caps">+12.5%</span>
+</div>
+<div>
+<h3 class="font-body-sm text-body-sm text-on-surface-variant">Pedidos Pendentes</h3>
+<p class="font-h1 text-h1 text-on-surface mt-xs">142</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 bg-error-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[28px]">trending_down</span>
+</div>
+<span class="bg-error-container text-on-error-container px-sm py-xs rounded-full font-label-caps text-label-caps">Action Required</span>
+</div>
+<div>
+<h3 class="font-body-sm text-body-sm text-on-surface-variant">Produtos em Baixo Estoque</h3>
+<p class="font-h1 text-h1 text-on-surface mt-xs">28</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]">task_alt</span>
+</div>
+<span class="bg-primary-container/20 text-on-primary-container px-sm py-xs rounded-full font-label-caps text-label-caps">Daily Target</span>
+</div>
+<div>
+<h3 class="font-body-sm text-body-sm text-on-surface-variant">Pedidos Enviados Hoje</h3>
+<p class="font-h1 text-h1 text-on-surface mt-xs">315</p>
+</div>
+</div>
+</section>
+<!-- Bento Layout Sections -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Inventory Flow Chart Section (Bento Large) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant/20 flex items-center justify-between">
+<h3 class="font-h3 text-h3 text-on-surface">Fluxo de Inventário</h3>
+<div class="flex gap-2">
+<button class="px-sm py-xs text-label-caps font-label-caps rounded bg-surface-container-high">Semanas</button>
+<button class="px-sm py-xs text-label-caps font-label-caps rounded text-on-surface-variant">Meses</button>
+</div>
+</div>
+<div class="h-[300px] relative">
+<img class="w-full h-full object-cover opacity-10 mix-blend-multiply" data-alt="A clean, minimalist data visualization background featuring subtle line charts and architectural grid patterns. The image conveys high-tech precision in a logistics context with soft green and grey tones. The lighting is bright and airy, reflecting a professional light-mode corporate dashboard aesthetic with ample white space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIHl8IXUhvff0WP3vmM2P6SwuFQR3Y_aXsOjfj6opKx1y2lj8eXs84Va6L0ynJbgM5P_zzvI5aiyG5loPooQH1dHCJuv-mcpBFo3__COmiy_Wg37Q11JutPRJCZe1xjPdrGQ2Lv92KTqoJJBvS4Mst4iGzO3fFApTLdrE8LJpGieCwCIVhnfITXa0hIqzQilk11wPS8_IIozjszBKZZHUafwWX8uoL15Q5Sm5V_pCmxg35XzhCt0Jw4uJOe11Y_N2fJkBxx-v1-MU"/>
+<div class="absolute inset-0 p-lg flex items-end">
+<div class="w-full flex items-end justify-between gap-4 h-full pt-10">
+<div class="w-full bg-primary/20 rounded-t h-[40%]"></div>
+<div class="w-full bg-primary/30 rounded-t h-[65%]"></div>
+<div class="w-full bg-primary/20 rounded-t h-[50%]"></div>
+<div class="w-full bg-primary/40 rounded-t h-[80%]"></div>
+<div class="w-full bg-primary/60 rounded-t h-[95%]"></div>
+<div class="w-full bg-primary/40 rounded-t h-[70%]"></div>
+<div class="w-full bg-primary/20 rounded-t h-[45%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Shipments Section (Bento Small) -->
+<div class="col-span-12 lg:col-span-4 bg-zinc-900 rounded-xl shadow-xl overflow-hidden text-white">
+<div class="p-lg">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="text-lg font-bold">Monitoramento GPS</h3>
+<span class="material-symbols-outlined text-emerald-500">sensors</span>
+</div>
+<div class="space-y-md">
+<div class="flex items-start gap-md group">
+<div class="w-1 h-12 bg-emerald-500 rounded-full group-hover:bg-emerald-400 transition-colors"></div>
+<div>
+<p class="text-sm font-semibold">Caminhão #8824</p>
+<p class="text-xs text-zinc-400">Em trânsito para São Paulo</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-emerald-500">location_on</span>
+<span class="text-[10px] text-zinc-500 uppercase font-bold">Rodovia Anhanguera</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-md group opacity-60">
+<div class="w-1 h-12 bg-zinc-700 rounded-full"></div>
+<div>
+<p class="text-sm font-semibold">Caminhão #1290</p>
+<p class="text-xs text-zinc-400">Carregamento concluído</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-zinc-500">warehouse</span>
+<span class="text-[10px] text-zinc-500 uppercase font-bold">CD Cajamar</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-md group">
+<div class="w-1 h-12 bg-amber-500 rounded-full"></div>
+<div>
+<p class="text-sm font-semibold">Caminhão #4431</p>
+<p class="text-xs text-zinc-400">Atraso na descarga</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-amber-500">warning</span>
+<span class="text-[10px] text-zinc-500 uppercase font-bold">Porto de Santos</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 h-32 w-full bg-zinc-800 relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-30 grayscale" data-alt="A dark, stylized night-mode satellite map visualization showing logistics routes with neon glowing lines representing transit paths. The aesthetic is futuristic and high-contrast, utilizing deep blacks, charcoals, and vibrant emerald green highlights. The lighting is moody, emphasizing a state-of-the-art global tracking network environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6wfPIl6T4NaXoHbcsKhPyD4TKugWPElOAnr-GfMAIwTXXDhU1dkpbHSjUsw2GjnuQjarIunkU52MmuZCj50iMljhYKwhWwzvSdF3b8RIuSBDVzh4ed0xuVIKW4LLOVANYdj1k9ppRNGItLL18e2BYpS9YP1CTRXE3UGnAsNQRLCkoDZlwJhsZwQTSqvCAeZCw6a2Vv1OyE9UfSF6a3g0go2o2XFHHyROqcJXtG5TyuHTGO84QeDQbxm_zXwKLxkK6s3yDp0z6Ri8"/>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="col-span-12 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30">
+<div class="p-lg border-b border-outline-variant/20 flex items-center justify-between">
+<h3 class="font-h3 text-h3 text-on-surface">Últimos Pedidos</h3>
+<div class="flex items-center bg-surface-container rounded-lg px-sm border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm py-xs w-48" placeholder="Buscar pedidos..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low text-on-surface-variant border-b border-outline-variant/20">
+<tr>
+<th class="px-lg py-md font-semibold">ID Pedido</th>
+<th class="px-lg py-md font-semibold">Cliente</th>
+<th class="px-lg py-md font-semibold">Data</th>
+<th class="px-lg py-md font-semibold">Status</th>
+<th class="px-lg py-md font-semibold">Valor</th>
+<th class="px-lg py-md font-semibold">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-md font-medium">#LOG-2024-001</td>
+<td class="px-lg py-md">Alpha Indústrias S.A.</td>
+<td class="px-lg py-md">15 Out, 2023</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs rounded-full bg-primary-container/20 text-on-primary-container font-label-caps text-[10px] uppercase font-bold tracking-wider">Entregue</span>
+</td>
+<td class="px-lg py-md">R$ 12.450,00</td>
+<td class="px-lg py-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-md font-medium">#LOG-2024-002</td>
+<td class="px-lg py-md">Beta Soluções Logísticas</td>
+<td class="px-lg py-md">16 Out, 2023</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs rounded-full bg-amber-500/10 text-amber-700 font-label-caps text-[10px] uppercase font-bold tracking-wider">Em Rota</span>
+</td>
+<td class="px-lg py-md">R$ 8.200,00</td>
+<td class="px-lg py-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-md font-medium">#LOG-2024-003</td>
+<td class="px-lg py-md">Gamma Tech LTDA</td>
+<td class="px-lg py-md">16 Out, 2023</td>
+<td class="px-lg py-md">
+<span class="px-sm py-xs rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-[10px] uppercase font-bold tracking-wider">Processando</span>
+</td>
+<td class="px-lg py-md">R$ 4.150,00</td>
+<td class="px-lg py-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-lg py-md border-t border-outline-variant/20 flex items-center justify-between bg-surface-container-low/30">
+<p class="text-xs text-on-surface-variant">Mostrando 3 de 142 pedidos pendentes</p>
+<div class="flex gap-2">
+<button class="p-1 rounded border border-outline-variant/50 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 rounded border border-outline-variant/50 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button Contextual (Hidden as per rule for Dashboard/Details usually, but let's assume it stays for New Order if Dashboard is the "Primary" screen) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</body></html>
