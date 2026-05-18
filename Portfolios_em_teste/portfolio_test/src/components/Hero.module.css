@@ -1,0 +1,103 @@
+/* Hero ocupa a viewport com imagem de fundo — coloque /public/capa.jpg */
+.hero {
+  background-image: url('/capa.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  width: 100%;
+  font-family: var(--font-display);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 6rem;
+  /* fallback caso sem imagem */
+  background-color: #1a2535;
+}
+
+.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+}
+.photo img {
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  object-position: 60% 40%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  gap: 0.3rem;
+  text-align: center;
+}
+.info p {
+  font-size: clamp(18px, 3vw, 28px);
+}
+.info h1 {
+  font-size: clamp(26px, 4.5vw, 46px);
+  font-weight: 800;
+}
+.role {
+  font-size: clamp(14px, 2vw, 22px);
+  opacity: 0.75;
+  margin-top: 4px;
+}
+
+.contacts {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.contact {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 5px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.contact:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 24px rgba(0,0,0,0.35);
+}
+
+.cvLink {
+  text-decoration: none;
+}
+.cvBtn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.7rem 1rem;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  width: 160px;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(23, 24, 24, 0.3);
+}
+.cvBtn:hover {
+  transform: translateY(-6px);
+  background-color: var(--color-accent);
+  box-shadow: 0 12px 28px rgba(34, 38, 44, 0.35);
+}
+.cvBtn:active {
+  transform: translateY(0);
+}

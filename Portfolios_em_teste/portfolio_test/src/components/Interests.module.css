@@ -1,0 +1,45 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  gap: 3rem;
+  padding: 0 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: min(80%, 900px);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.icon {
+  font-size: 2.5rem;
+  opacity: 0.85;
+}
+
+.item h2 {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.item p {
+  font-size: clamp(14px, 1.5vw, 18px);
+  font-family: var(--font-body);
+  opacity: 0.75;
+  line-height: 1.6;
+  max-width: 600px;
+}

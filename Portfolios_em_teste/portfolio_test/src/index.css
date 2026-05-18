@@ -1,0 +1,77 @@
+/* =============================================
+   VARIÁVEIS — edite aqui para mudar as cores
+   ============================================= */
+:root {
+  --color-bg:        #1a1a1a;
+  --color-bg-dark:   #090f1a;
+  --color-bg-card:   #134747;
+  --color-accent:    #36d43e;   /* verde do botão CV no hover */
+  --color-primary:   #4f46e5;   /* azul roxo dos botões de projeto */
+  --color-primary-h: #6366f1;
+  --color-border:    rgb(110, 142, 248);
+  --color-text:      #ffffff;
+  --color-muted:     rgba(255,255,255,0.7);
+
+  --font-display: 'Montserrat', sans-serif;
+  --font-body:    'Open Sans', sans-serif;
+
+  --radius-card: 18px;
+  --shadow-card: 0 8px 25px rgba(0,0,0,0.3);
+  --shadow-card-h: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* =============================================
+   RESET
+   ============================================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(to bottom, #1a1a1a, #2a3b4c),
+    radial-gradient(circle at center, transparent 50%, rgba(0,0,0,0.7));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* =============================================
+   UTILITÁRIOS COMUNS
+   ============================================= */
+.section-title {
+  color: #fff;
+  font-family: var(--font-display);
+  border: 4px solid rgba(255,255,255,0.5);
+  padding: 12px 20px;
+  background-color: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  font-size: clamp(20px, 5vw, 36px);
+  display: inline-block;
+}
+
+/* Animações de scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.from-left  { transform: translateX(-50px); }
+.reveal.from-right { transform: translateX(50px); }
+.reveal.visible    { opacity: 1; transform: translate(0); }
